@@ -5,14 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Introduction</title>
     <style>
+        /* reset */
+        html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* reset */
+
         body {
             margin: 20px;
+            background-color: #caf0f8;
         }
         .header {
+            font-size: 5em;
             background-color: #48cae4;
             text-align: left;
             padding: 20px 40px;
             border-radius: 30px;
+            margin: 20px 0;
+            display: inline-block;
+            width: auto;
+        }
+        .team-intro {
+            font-size: 5em;
+        }
+        .team-intro-p {
+            font-size: 3em;
         }
         .content {
             background-image: url(./img/bg.jpg);
@@ -53,7 +110,6 @@
            padding: 20px;
            margin: 20px auto;
            max-width: 500px;
-           background-image: url('https://images.unsplash.com/photo-1484291470158-b8f8d608850d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
            background-size: cover;
            background-position: center;
         }
@@ -86,16 +142,37 @@
             color: #666;
             line-height: 1.5;
         }
+        .rubik-wet-paint-regular {
+  font-family: "Rubik Wet Paint", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.dokdo-regular {
+  font-family: "Dokdo", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
     </style>
+    <!-- 영어 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Port+Lligat+Sans&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <!-- 한글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Itim&family=Port+Lligat+Sans&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
+    <div class="header rubik-wet-paint-regular">
     <h1>래프트(From Garbage)</h1>
     </div>
     <div class="content">
         <div>
-        <h2>팀 소개 내용</h2>
-        <p>팀 소개 내용 ---</p>
+        <h2 class="team-intro dokdo-regular">팀 소개</h2>
+        <p class="team-intro-p dokdo-regular">안녕하세요. 저희는 공통 취미인 게임에서 4명이 다 아는 게임인 RAFT를 주요 아이템으로 가져와 팀 소개를 꾸몄습니다.</p>
     </div>
         <div class = "raft">
             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011" alt="raft">
@@ -137,9 +214,9 @@
     </div>
     <div class="record-container">
         <div class="record-card">
-            <div>홍길동</div>
+            <div>박재성</div>
             <hr>
-            <div>방명록 내용이 여기에 들어갑니다.</div>
+            <div>멋진 페이지 꾸미셨네요!</div>
         </div>
     </div>
 </body>
