@@ -8,7 +8,7 @@
         /* 제목 */
         .h1 {
             font-size: 4rem;
-            margin: 2em;
+            margin: 1em;
             text-align: center;
         }
         /* 제목 */
@@ -27,11 +27,11 @@
             display: flex;
         }
         .nav-ul li {
-            font-size: 1.5rem;
+            font-size: 1rem;
             display: inline;
             text-align: center;
             flex-grow: 1;
-            padding: 0 5rem;
+            padding: 0 2rem;
         }
         /* 네비게이션바 */
 
@@ -42,12 +42,13 @@
             flex-direction: row;
             align-items: flex-start;
             justify-content: space-between;
-            width: 40%;
-            padding: 2rem;
+            width: 60%;
+            padding: 1rem;
             margin: 5rem auto;
         }
         .raft {
             display: flex;
+            width: 100%;
         }
         /* 팀소개 */
 
@@ -56,16 +57,18 @@
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
-            width: 60%;
+            width: 80%;
             margin: 5rem auto;
         }
         .팀카드 {
             background-color: #caf0f8;
-            font-size: 1.5rem;
-            width: 20%;
-            height: 30rem;
-            padding: 1rem;
-            margin: 2rem;
+            font-size: 1rem;
+            width: 50%;
+            height: auto;
+            margin: 1rem;
+        }
+        .팀카드 ul {
+            padding: 0 0 0 10px;
         }
         .팀카드 li {
             margin: 1rem;
@@ -77,18 +80,33 @@
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
-            width: 60%;
-            margin: 5rem auto;
+            width: 80%;
+            margin: 0rem auto;
         }
         .멤버카드 {
             background-color: #ade8f4;
-            font-size: 1.5rem;
+            font-size: 1rem;
             width: 20%;
-            height: 30rem;
-            padding: 1rem;
-            margin: 2rem;
+            padding: 10px;
+            height: auto;
+            margin: 1rem;
+        }
+        .멤버카드 p {
+            margin: 0;
         }
         /* 멤버내용 */
+
+        /*노트북 & PC : 1024px-*/
+        @media all and (min-width:1024px){
+        }
+
+        /*태블릿 가로, 세로 : 768px-1023px*/
+        @media all and (min-width:768px) and (max-width:1023px){
+        }
+
+        /*모바일 가로, 세로 : -767px*/
+        @media all and (max-width:767px){
+        }
     </style>
 </head>
 <body>
@@ -106,7 +124,7 @@
     <!-- 팀소개 -->
     <div class="팀소개">
         <div>
-            <h2>래프트(from garbage)</h2>
+            <h3>래프트(from garbage)</h3>
             <p>안녕하세요! 미니프로젝트에서 4조를 맡은 팀 래프트(from garbage)입니다.</p>
         </div>
         <div>
