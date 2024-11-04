@@ -32,6 +32,7 @@
             text-align: center;
             flex-grow: 1;
             padding: 0 2rem;
+            cursor: pointer;
         }
         /* 네비게이션바 */
 
@@ -95,18 +96,6 @@
             margin: 0;
         }
         /* 멤버내용 */
-
-        /*노트북 & PC : 1024px-*/
-        @media all and (min-width:1024px){
-        }
-
-        /*태블릿 가로, 세로 : 768px-1023px*/
-        @media all and (min-width:768px) and (max-width:1023px){
-        }
-
-        /*모바일 가로, 세로 : -767px*/
-        @media all and (max-width:767px){
-        }
     </style>
 </head>
 <body>
@@ -114,15 +103,15 @@
     <h1 class="h1">래프트(from garbage)</h1>
     <nav class="nav">
         <ul class="nav-ul">
-            <li>팀 소개</li> 
-            <li>팀 내용</li> 
-            <li>멤버</li>
-            <li>방명록</li>
+            <li id="teamIntro">팀 소개</li> 
+            <li id="teamContent">팀 내용</li> 
+            <li id="teamMembers">멤버</li>
+            <li id="guestbook">방명록</li>
         </ul>
     </nav>
 
     <!-- 팀소개 -->
-    <div class="팀소개">
+    <div class="팀소개" id="팀소개">
         <div>
             <h3>래프트(from garbage)</h3>
             <p>안녕하세요! 미니프로젝트에서 4조를 맡은 팀 래프트(from garbage)입니다.</p>
@@ -133,7 +122,7 @@
     </div>
 
     <!-- 팀내용 -->
-    <div class="팀내용">
+    <div class="팀내용" id="팀내용">
         <div class="팀카드">
             <p>열심히 꾸며봐요!</p>
         </div>
@@ -157,7 +146,7 @@
     </div>
 
     <!-- 멤버 -->
-    <div class="멤버">
+    <div class="멤버" id="멤버">
         <div class="멤버카드">
             <p>열심히 꾸며봐요!</p>
         </div>
@@ -171,5 +160,24 @@
             <p>열심히 꾸며봐요!</p>
         </div>
     </div>
+
+    <script>
+        document.getElementById("teamIntro").addEventListener("click", function() {
+            document.getElementById("팀소개").scrollIntoView({ behavior: "smooth" });
+        });
+
+        document.getElementById("teamContent").addEventListener("click", function() {
+            document.getElementById("팀내용").scrollIntoView({ behavior: "smooth" });
+        });
+
+        document.getElementById("teamMembers").addEventListener("click", function() {
+            document.getElementById("멤버").scrollIntoView({ behavior: "smooth" });
+        });
+
+        // 방명록이 아직 없으므로 alert를 추가해놓음
+        document.getElementById("guestbook").addEventListener("click", function() {
+            alert("방명록 섹션은 준비 중입니다!");
+        });
+    </script>
 </body>
 </html>
