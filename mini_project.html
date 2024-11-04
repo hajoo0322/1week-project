@@ -7,8 +7,8 @@
     <style>
         /* 제목 */
         .h1 {
-            font-size: 3rem;
-            margin: 1em;
+            font-size: 4rem;
+            margin: 2em;
             text-align: center;
         }
         /* 제목 */
@@ -51,7 +51,26 @@
         }
         /* 팀소개 */
 
-        
+        /* 팀카드 */
+        .팀내용 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 60%;
+            margin: 5rem auto;
+        }
+        .팀카드 {
+            background-color: #caf0f8;
+            font-size: 1.5rem;
+            width: 20%;
+            height: 30rem;
+            padding: 1rem;
+            margin: 2rem;
+        }
+        .팀카드 li {
+            margin: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -72,6 +91,29 @@
         </div>
         <div>
             <img class="raft" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011" alt="Raft_steam">
+        </div>
+    </div>
+
+    <div class="팀내용">
+        <div class="팀카드">
+            <p>열심히 꾸며봐요!</p>
+        </div>
+        <div class="팀카드">
+            <ul>
+                <li>소통을 중요시하며 자리 비움이나 문제가 생기면 빠르게 공유하겠습니다.</li>
+                <li>실수나 문제가 있어도 남 탓하지말고 문제를 해결해나가는데 집중하겠습니다.</li>
+                <li>대화를 할 때는 캠도 켜고 화면공유도 잘 하겠습니다.</li>
+                <li>파이팅하겠습니다!</li>
+            </ul>
+        </div>
+        <div class="팀카드">
+            <ul>
+                <li>매일 일정 소화하기</li>
+                <li>부끄러워도 물어보기</li>
+                <li>이번 프로젝트 포트폴리오로 사용하기</li>
+                <li>TIL 남은날까지 맨날 쓰기</li>
+                <li>1일 1TIL, 1알고리즘</li>
+            </ul>
         </div>
     </div>
 </body>
