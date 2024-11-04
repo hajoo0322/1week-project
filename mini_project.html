@@ -72,9 +72,27 @@
         }
         /* 팀내용 */
 
+        /* 멤버내용 */
+        .멤버 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 60%;
+            margin: 5rem auto;
+        }
+        .멤버카드 {
+            background-color: #ade8f4;
+            font-size: 1.5rem;
+            width: 20%;
+            height: 30rem;
+            padding: 1rem;
+            margin: 2rem;
+        }
+        /* 멤버내용 */
     </style>
 </head>
 <body>
+    <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
     <nav class="nav">
         <ul class="nav-ul">
@@ -85,6 +103,7 @@
         </ul>
     </nav>
 
+    <!-- 팀소개 -->
     <div class="팀소개">
         <div>
             <h2>래프트(from garbage)</h2>
@@ -95,6 +114,7 @@
         </div>
     </div>
 
+    <!-- 팀내용 -->
     <div class="팀내용">
         <div class="팀카드">
             <p>열심히 꾸며봐요!</p>
@@ -115,6 +135,22 @@
                 <li>TIL 남은날까지 맨날 쓰기</li>
                 <li>1일 1TIL, 1알고리즘</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- 멤버 -->
+    <div class="멤버">
+        <div class="멤버카드">
+            <p>열심히 꾸며봐요!</p>
+        </div>
+        <div class="멤버카드">
+            <p>열심히 꾸며봐요!</p>
+        </div>
+        <div class="멤버카드">
+            <p>열심히 꾸며봐요!</p>
+        </div>
+        <div class="멤버카드">
+            <p>열심히 꾸며봐요!</p>
         </div>
     </div>
 </body>
