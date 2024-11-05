@@ -289,6 +289,41 @@
 
             $('#msg').text(temp);
         })
+
+        $("#guestbookbtn").click(async function () {
+            let name = $('#name').val();
+            let content = $('#content').val();
+
+            let doc = {
+                'name': name,
+                'content': content
+            };
+            await addDoc(collection(db, "guestbook"), doc);
+            alert('저장 완료!');
+            window.location.reload();
+        })
+
+        let docs = await getDocs(collection(db, "guestbook"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let name = row['name'];
+            let content = row['content'];
+
+            //console.log(image, title, comment);  //console 창에 값 띄우기!
+            //console.log(star);  //console 창에 값 띄우기!
+
+            let temp_html = `            
+            <div class="guestbookcard">
+            <div class="card-body">
+                <h3>${name}</h3>
+                <p>${content}</p>
+            </div>
+        </div>`;
+
+            $('#card').append(temp_html);  //카드 추가하기!
+
+        });
     </script>
 </head>
 
