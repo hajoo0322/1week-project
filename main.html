@@ -161,20 +161,118 @@
 
         /* 멤버내용 */
     </style>
+    <script>
+function getCurrentDateTime() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     
+    let hours = date.getHours();
+
+    // 기상청 API 제공 기준 시간
+    const baseTimes = [2, 5, 8, 11, 14, 17, 20, 23];
+    let baseTime = baseTimes.reduce((prev, curr) => (curr <= hours ? curr : prev));
+    
+    // 정시 형식으로 맞춤
+    baseTime = String(baseTime).padStart(2, '0') + '00';
+    
+    // 자정 이후일 경우 전날로 설정
+    if (hours < 2) {
+        const prevDate = new Date(date.getTime() - 86400000); // 하루 전 날짜
+        year = prevDate.getFullYear();
+        month = String(prevDate.getMonth() + 1).padStart(2, '0');
+        day = String(prevDate.getDate()).padStart(2, '0');
+        baseTime = "2300";
+    }
+    
+    return { date: `${year}${month}${day}`, time: baseTime };
+}
+
+
+async function fetchWeatherData(nx, ny) {
+    const apiKey = 'YwQtuITGE24Cty%2BKIF1TkmtNgWiuGUKTCSB8cmqMKSDMRt8r8iq3wNheCCK5rUaTua8gArWcX4ZvS9dIq%2B%2FxiA%3D%3D'; // 본인의 서비스 키를 입력하세요.
+    const { date: baseDate, time: baseTime } = getCurrentDateTime();
+    const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${apiKey}&numOfRows=10&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.response.header.resultCode === "00") {
+            displayForecast(data.response.body.items.item);
+        } else {
+            console.error("API 응답 오류: ", data.response.header.resultMsg);
+        }
+    } catch (error) {
+        console.error("날씨 데이터를 가져오는 중 오류 발생: ", error);
+    }
+}
+
+function displayForecast(items) {
+    const forecastContainer = document.getElementById("forecast");
+    forecastContainer.innerHTML = ""; // 초기화
+
+    // TMP (기온), WSD (풍속), POP (강수확률) 필터링하여 표시
+    items.forEach(item => {
+        const category = item.category;
+        const fcstValue = item.fcstValue;
+
+        let displayText = "";
+
+        if (category === "TMP") {
+            displayText = `기온 - ${fcstValue}℃`;
+        } else if (category === "WSD") {
+            displayText = `풍속 - ${fcstValue}m/s`;
+        } else if (category === "POP") {
+            displayText = `강수확률 - ${fcstValue}%`;
+        }
+
+        if (displayText) {
+            const forecastElement = document.createElement("p");
+            forecastElement.textContent = displayText;
+            forecastContainer.appendChild(forecastElement);
+        }
+    });
+}
+
+
+// 사용자의 위치 정보 가져오기
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords;
+        
+        // 위치 정보를 nx, ny 좌표로 변환하는 로직 필요 (별첨 엑셀 참조)
+        const nx = 60; // 변환된 X 좌표
+        const ny = 127; // 변환된 Y 좌표
+
+        fetchWeatherData(nx, ny);
+    }, error => {
+        console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+    });
+} else {
+    console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+}
+
+    </script>
 </head>
 
 <body>
-    <!-- 제목 및 네비게이션바 -->
-    <h1 class="h1">래프트(from garbage)</h1>
-    <nav class="nav">
-        <ul class="nav-ul">
-            <li id="teamIntro" class="SMN_effect-14">팀 소개</li>
-            <li id="teamContent" class="SMN_effect-14">팀 내용</li>
-            <li id="teamMembers" class="SMN_effect-14">멤버</li>
-            <li id="guestbook" class="SMN_effect-14">방명록</li>
-        </ul>
-    </nav>
+<!-- 제목 및 네비게이션바 -->
+<h1 class="h1">래프트(from garbage)</h1>
+<nav class="nav">
+    <ul class="nav-ul">
+        <li id="teamIntro" class="SMN_effect-14">팀 소개</li>
+        <li id="teamContent" class="SMN_effect-14">팀 내용</li>
+        <li id="teamMembers" class="SMN_effect-14">멤버</li>
+        <li id="guestbook" class="SMN_effect-14">방명록</li>
+    </ul>
+</nav>
+<!-- 날씨위젯 -->
+<div id="weather-widget" style="position: absolute; top: 10px; right: 10px; padding: 1rem; border: 1px solid #0077b6; background-color: #ffffff; border-radius: 5px;">
+    <h4>단기예보</h4>
+    <div id="forecast"></div>
+</div>
 
     <!-- 팀소개 -->
     <div class="팀소개" id="팀소개">
