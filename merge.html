@@ -27,6 +27,27 @@
 
         /* 제목 */
 
+        /* 시계 */
+        .container {
+            width: 100%;
+            height: 100vh;
+
+            background-color: antiquewhite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #current-time {
+            position: absolute;
+            color: white;
+            font-size: 8rem;
+        }
+
+        /* 시계 */
+
         /* 네비게이션바 */
         .nav {
             border-top: solid 1px #0077b6;
@@ -172,13 +193,15 @@
             margin: 0;
         }
 
-        /* 멤버내용 */
         .team {
             width: 1200px;
 
             margin: 20px auto 20px auto;
         }
 
+        /* 멤버내용 */
+
+        /* 방명록 */
         .guestbook {
             width: 1000px;
             background-color: #ade8f4;
@@ -195,6 +218,9 @@
             width: 100%;
         }
 
+        /* 방명록 */
+
+        /* 방명록 카드 */
         .guestbookcard {
             width: 1300px;
             border: 2px solid white;
@@ -210,13 +236,28 @@
             transform: translateY(-10px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
-    </style>
 
+        /* 방명록 카드 */
+    </style>
+    <script>
+        const time = document.getElementById('current-time'); // id가 'current-time'인 요소
+
+        // 1초마다 현재 시각 업데이트
+        setInterval(() => {
+            const date = new Date(); // 새로운 Date 객체 생성
+            time.innerHTML = date.toLocaleTimeString();
+        }, 1000);
+    </script>
 </head>
 
 <body>
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
+
+    <div class="container">
+        <h1 id="current-time"></h1>
+    </div>
+
     <nav class="nav">
         <ul class="nav-ul">
             <li id="teamIntro" class="SMN_effect-14">팀 소개</li>
@@ -280,7 +321,7 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJrKvgRYGgmnoPZ1ziaeughvvFrQHJsirpdg&s"
                         class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">박재정</h5>
+                        <h5 class="card-title">박재성</h5>
                         <p class="card-text">MBTI</p>
                     </div>
                 </div>
