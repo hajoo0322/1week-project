@@ -262,6 +262,33 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            const now = new Date(); // 현재 시간을 가져옵니다.
+
+            // 시간을 형식에 맞게 가져오기
+            const hours = String(now.getHours()).padStart(2, "0"); // 시
+            const minutes = String(now.getMinutes()).padStart(2, "0"); // 분
+            const seconds = String(now.getSeconds()).padStart(2, "0"); // 초
+
+            // 시간을 문자열로 조합
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // 1초마다 시간을 업데이트
+        setInterval(updateTime, 1000);
+
+        // 페이지가 로드될 때 즉시 시간을 표시하기 위해 초기 호출
+        updateTime();
+
+
+        let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
+        fetch(url).then(res => res.json()).then(data => {
+            let temp = data['temp'];
+
+            $('#msg').text(temp);
+        })
     </script>
 </head>
 
@@ -269,7 +296,10 @@
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
 
-
+    <div class="clock">
+        <h4 id="time"></h4>
+        <h4><span id="msg"></span>도</h4>
+    </div>
     
     <nav class="nav">
         <ul class="nav-ul">
