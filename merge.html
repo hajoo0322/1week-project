@@ -264,6 +264,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // 시간 불러오는 기능
         function updateTime() {
             const timeElement = document.getElementById("time");
             const now = new Date(); // 현재 시간을 가져옵니다.
@@ -283,7 +284,7 @@
         // 페이지가 로드될 때 즉시 시간을 표시하기 위해 초기 호출
         updateTime();
 
-
+        // 기온 불러오는 기능
         let url = "http://spartacodingclub.shop/sparta_api/weather/seoul";
         fetch(url).then(res => res.json()).then(data => {
             let temp = data['temp'];
@@ -291,6 +292,7 @@
             $('#msg').text(temp);
         })
 
+        // 방명록 저장할 데이터 입력 후 저장
         $("#guestbookbtn").click(async function () {
             let name = $('#name').val();
             let content = $('#content').val();
@@ -304,6 +306,7 @@
             window.location.reload();
         })
 
+        // 방명록에 저장되어 있는 데이터 카드로 가져오기
         let docs = await getDocs(collection(db, "guestbook"));
         docs.forEach((doc) => {
             let row = doc.data();
@@ -323,6 +326,34 @@
         </div>`;
 
             $('#card').append(temp_html);  //카드 추가하기!
+
+        });
+
+        $(document).ready(function () {
+
+            $("#teamIntro").click(function () {
+
+                $("html ").animate({ scrollTop: $("#팀소개").offset().top }, 1000);
+
+            });
+
+            $("#teamContent").click(function () {
+
+                $("html").animate({ scrollTop: $("#팀내용").offset().top }, 1000);
+
+            });
+
+            $("#teamMembers").click(function () {
+
+                $("html").animate({ scrollTop: $("#팀원").offset().top }, 1000);
+
+            });
+
+            $("#guestbook").click(function () {
+
+                $("html").animate({ scrollTop: $("#방명록").offset().top }, 1000);
+
+            });
 
         });
     </script>
@@ -383,7 +414,7 @@
         </div>
     </div>
 
-    <div class="team">
+    <div class="team" id="팀원">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <a href="" class="card h-100 text-decoration-none">
@@ -428,7 +459,7 @@
         </div>
     </div>
 
-    <div class="guestbook">
+    <div class="guestbook" id="방명록">
         <h2>방명록 작성하기</h2>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">이름</label>
