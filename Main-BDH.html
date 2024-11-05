@@ -184,8 +184,15 @@
 
         .container2 {
             display: flex;
-            width: 100%;
-            max-width: 1200px;
+            /* flexbox 사용 */
+            flex-wrap: wrap;
+            /* 줄바꿈을 허용하여 여러 줄로 배치 */
+            justify-content: space-between;
+            /* 박스 사이에 여백을 고르게 배분 */
+            width: 90%;
+            /* 컨테이너 너비 */
+            margin: 20px auto;
+            /* 컨테이너 중앙 정렬 */
         }
 
         .sidebar {
@@ -217,31 +224,40 @@
         }
 
         .box {
-    width: 100%; /* 박스의 너비를 100%로 설정 */
-    margin: 1%; /* 박스 간의 여백 설정 */
-    display: inline-block; /* 박스를 수평으로 정렬 */
-    box-sizing: border-box; /* 패딩과 테두리 크기를 포함하여 박스 크기를 계산 */
-    border: 2px solid white; /* 박스 외곽선 색깔 */
-    background-color: rgba(255, 255, 255, 0.8); /* 투명한 배경색 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    padding: 10px; /* 내부 여백 */
-    position: relative; /* 자식 요소 절대 위치를 위한 설정 */
-}
+            width: 20%;
+            height: 30%;
+            margin: 1%;
+            display: inline-block;
+            box-sizing: border-box;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+        }
 
-.box img {
-    display: block; /* 이미지 블록으로 설정 */
-    margin: 0 auto; /* 자동 여백으로 가운데 정렬 */
-    width: 100%; /* 박스 너비에 맞춤 */
-    height: auto; /* 높이를 자동으로 설정하여 비율 유지 */
-    max-height: 200px; /* 최대 높이를 설정하여 박스의 크기 제한 */
-    object-fit: cover; /* 비율 유지하며 박스에 맞게 잘림 */
-    border-radius: 8px; /* 이미지 모서리 둥글게 */
-    margin-bottom: 10px; /* 이미지와 설명 사이 여백 */
-}
+        .box img {
+            display: block;
+            /* 이미지 블록으로 설정 */
+            margin: 0 auto;
+            /* 자동 여백으로 가운데 정렬 */
+            width: auto;
+            max-width: 100%;
+            /* 박스 너비에 맞춤 */
+            height: auto;
+            max-height: 15vh;
+            /* 원하는 높이 설정 */
+            object-fit: cover;
+            /* 비율 유지하며 박스에 맞게 잘림 */
+            border-radius: 8px;
+            /* 이미지 모서리 둥글게 */
+            margin-bottom: 10px;
+        }
 
         .description {
             padding: 10px;
             color: black;
+            text-align: center;
         }
     </style>
 </head>
@@ -318,15 +334,15 @@
                 <div class="section">
                     <h2>Future</h2>
                     <div class="box">
-                        <img src="" alt="Future Image 1">
+                        <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
                         <div class="description">간단한 설명 4</div>
                     </div>
                     <div class="box">
-                        <img src="" alt="Future Image 2">
+                        <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg" alt="Future Image 2">
                         <div class="description">간단한 설명 5</div>
                     </div>
                     <div class="box">
-                        <img src="" alt="Future Image 3">
+                        <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/04/12/106357558.1.jpg" alt="Future Image 3">
                         <div class="description">간단한 설명 6</div>
                     </div>
                 </div>
