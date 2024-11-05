@@ -437,21 +437,39 @@
                 }
             });
         }
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const {
-                    latitude,
-                    longitude
-                } = position.coords;
-                const nx = 60;
-                const ny = 127;
-                fetchWeatherData(nx, ny);
-            }, error => {
-                console.error("위치 정보를 가져오는 중 오류 발생: ", error);
-            });
-        } else {
-            console.log("사용자의 위치 정보를 가져올 수 없습니다.");
-        }
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(position => {
+        //         const {
+        //             latitude,
+        //             longitude
+        //         } = position.coords;
+        //         const nx = 60;
+        //         const ny = 127;
+        //         fetchWeatherData(nx, ny);
+        //     }, error => {
+        //         console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+        //     });
+        // } else {
+        //     console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+        // }
+        if (localStorage.getItem('userPosition')) {
+    const position = JSON.parse(localStorage.getItem('userPosition'));
+    fetchWeatherData(position.nx, position.ny);
+} else {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            const nx = 60;  // 원하는 값으로 대체
+            const ny = 127; // 원하는 값으로 대체
+            localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
+            fetchWeatherData(nx, ny);
+        }, error => {
+            console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+        });
+    } else {
+        console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+    }
+}
         // 일기예보
 
 
