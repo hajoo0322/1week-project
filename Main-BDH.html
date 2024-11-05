@@ -79,7 +79,7 @@
             display: inline-block;
         }
 
-        h1 {
+        .myInfo {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -125,6 +125,13 @@
             font-size: 2vh;
         }
 
+        .greeting {
+            font-size: 1.2em;
+            margin-left: 20px;
+            margin-right: 20px;
+            color: #555555;
+        }
+
         .LowerBox {
             display: block;
             width: 98%;
@@ -142,8 +149,9 @@
             box-sizing: border-box;
             border-radius: 8px;
         }
-        
+
         .firstIntro {
+            font-size: 3vh;
             margin: 1% 0 0 1%;
 
         }
@@ -159,12 +167,76 @@
             border-radius: 8px;
         }
 
-        .greeting {
-            font-size: 1.2em;
-            margin-left: 20px;
-            margin-right: 20px;
-            color: #555555;
-            /* 어두운 회색 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container2 {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            display: flex;
+            /* Flexbox 활성화 */
+            flex-wrap: wrap;
+            /* 자동 줄 바꿈 허용 */
+            justify-content: space-between;
+        }
+
+        .section h2 {
+            text-align: left;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: black;
+            margin-top: 5px;
+        }
+
+        .box {
+            width: 150px;
+            height: 250px;
+            margin: 10px auto;
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .box img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            padding: 10px;
+            color: black;
         }
     </style>
 </head>
@@ -184,7 +256,7 @@
             </div>
 
             <div class="container">
-                <h1>나의 정보</h1>
+                <h1 class="myInfo">나의 정보</h1>
                 <div class="info-box">
                     <div class="minInfoBoxes">
                         <div class="info-item">이름: 방동혁</div>
@@ -211,13 +283,50 @@
 
         <div class="LowerBox">
             <div class="firstIntroBox">
-                <div class="firstIntro">어려서부터 우리 집은 가난했었고, 남들 다 하는 외식 한 번 한 적이 없었고, 일터에 나가신 어머님 집에 없으면 언제나 혼자서 끓여먹었던 라면. 그러다 어느날 라면이 너무 지겨워서 맛있는 것좀 먹자고 대들었었어.</div>
+                <div class="firstIntro">어려서부터 우리 집은 가난했었고, 남들 다 하는 외식 한 번 한 적이 없었고, 일터에 나가신 어머님 집에 없으면 언제나 혼자서 끓여먹었던 라면.
+                    그러다 어느날 라면이 너무 지겨워서 맛있는 것좀 먹자고 대들었었어.</div>
             </div>
         </div>
     </div>
 
     <div class="ThirdBox">
-
+        <h1>Past & Future</h1>
+        <div class="container2">
+            <div class="sidebar">
+                <div class="section">
+                    <h2>Past</h2>
+                    <div class="box">
+                        <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
+                            alt="Past Image 1">
+                        <div class="description">간단한 설명 1</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://kormedi.com/wp-content/uploads/2022/04/ck_tica1010005154_l-580x387.jpg"
+                            alt="Past Image 2">
+                        <div class="description">간단한 설명 2</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://image.bugsm.co.kr/album/images/500/203001/20300127.jpg" alt="Past Image 3">
+                        <div class="description">간단한 설명 3</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Future</h2>
+                    <div class="box">
+                        <img src="" alt="Future Image 1">
+                        <div class="description">간단한 설명 4</div>
+                    </div>
+                    <div class="box">
+                        <img src="" alt="Future Image 2">
+                        <div class="description">간단한 설명 5</div>
+                    </div>
+                    <div class="box">
+                        <img src="" alt="Future Image 3">
+                        <div class="description">간단한 설명 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
