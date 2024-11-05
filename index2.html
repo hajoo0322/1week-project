@@ -77,7 +77,7 @@
     .content-text {
         padding: 20px;
         text-align: center;
-        margin-left: 11px ;
+        margin-left: 11px;
     }
 
     .box {
@@ -95,7 +95,8 @@
         width: 200px;
         margin-left: 11px;
     }
-    .card-footer{
+
+    .card-footer {
         margin: 100px auto 0 auto;
         padding-inline: 50px;
         height: 140px;
@@ -104,18 +105,44 @@
         justify-content: space-between;
         align-items: center;
     }
-    .form-control{
-        
+
+    .form-control {
+
         width: 1300px;
         height: 60px;
     }
-    .datbutton{
+
+    .datbutton {
         width: 80px;
         height: 66px;
     }
- 
 </style>
 
+<script>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+
+        authDomain: "sprta-f3322.firebaseapp.com",
+
+        projectId: "sprta-f3322",
+
+        storageBucket: "sprta-f3322.firebasestorage.app",
+
+        messagingSenderId: "56818984443",
+
+        appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+
+        measurementId: "G-WZLQRD938T"
+
+    };
+
+</script>
 
 <body>
 
@@ -172,19 +199,19 @@
         </div>
 
     </div>
-<div class="datgroup">
-    <div class="card-footer">
-        <form onsubmit="addComment(event)" style="display: flex; align-items: center; ">
-          <div class="remain">
-            <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
-          </div>
-          <button type="submit" class="datbutton">작성</button>
-        </form>
-        <div class="comments mt-3">
+    <div class="datgroup">
+        <div class="card-footer">
+            <form onsubmit="addComment(event)" style="display: flex; align-items: center; ">
+                <div class="remain">
+                    <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
+                </div>
+                <button type="submit" class="datbutton">작성</button>
+            </form>
+            <div class="comments mt-3">
+            </div>
         </div>
-      </div>
-    <div>
-    </div>
+        <div>
+        </div>
 
 
     </div>
