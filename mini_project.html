@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,21 +12,24 @@
             margin: 1em;
             text-align: center;
         }
+
         /* 제목 */
 
         /* 네비게이션바 */
         .nav {
-            background-color: #00b4d8;
-            color: white;
+            border-top: solid 1px #0077b6;
+            border-bottom: solid 1px #0077b6;
             display: flex;
             justify-content: center;
             width: 60%;
             margin: 0 auto;
         }
+
         .nav_ul {
             text-align: center;
             display: flex;
         }
+
         .nav-ul li {
             font-size: 1rem;
             display: inline;
@@ -33,7 +37,40 @@
             flex-grow: 1;
             padding: 0 2rem;
             cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
         }
+
+        .SMN_effect-14 {
+            position: relative;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .SMN_effect-14:before {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            color: transparent;
+            content: '•';
+            text-shadow: 0 0 transparent;
+            font-size: 13pt;
+            transition: text-shadow 0.3s, color 0.3s;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .SMN_effect-14:hover:before,
+        .SMN_effect-14:focus:before {
+            color: #000;
+            text-shadow: 10px 0 #000, -10px 0 #000;
+        }
+
+        .SMN_effect-14:hover,
+        .SMN_effect-14:focus {
+            color: #0abde3;
+        }
+
         /* 네비게이션바 */
 
         /* 팀소개 */
@@ -46,11 +83,14 @@
             width: 60%;
             padding: 1rem;
             margin: 5rem auto;
+            border-radius: 10px;
         }
+
         .raft {
             display: flex;
             width: 100%;
         }
+
         /* 팀소개 */
 
         /* 팀내용 */
@@ -61,19 +101,40 @@
             width: 80%;
             margin: 5rem auto;
         }
+
         .팀카드 {
             background-color: #caf0f8;
-            font-size: 1rem;
-            width: 50%;
+            font-size: 1.1rem;
+            width: 45%;
+            padding: 1.5rem;
             height: auto;
-            margin: 1rem;
+            margin: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .팀카드:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .팀카드 h3 {
+            font-size: 1.3rem;
+            color: #0077b6;
+            margin-bottom: 0.8rem;
+        }
+
         .팀카드 ul {
-            padding: 0 0 0 10px;
+            list-style-type: disc;
+            padding-left: 1.2rem;
         }
+
         .팀카드 li {
-            margin: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
+
         /* 팀내용 */
 
         /* 멤버내용 */
@@ -84,6 +145,7 @@
             width: 80%;
             margin: 0rem auto;
         }
+
         .멤버카드 {
             background-color: #ade8f4;
             font-size: 1rem;
@@ -92,21 +154,24 @@
             height: auto;
             margin: 1rem;
         }
+
         .멤버카드 p {
             margin: 0;
         }
+
         /* 멤버내용 */
     </style>
 </head>
+
 <body>
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
     <nav class="nav">
         <ul class="nav-ul">
-            <li id="teamIntro">팀 소개</li> 
-            <li id="teamContent">팀 내용</li> 
-            <li id="teamMembers">멤버</li>
-            <li id="guestbook">방명록</li>
+            <li id="teamIntro" class="SMN_effect-14">팀 소개</li>
+            <li id="teamContent" class="SMN_effect-14">팀 내용</li>
+            <li id="teamMembers" class="SMN_effect-14">멤버</li>
+            <li id="guestbook" class="SMN_effect-14">방명록</li>
         </ul>
     </nav>
 
@@ -163,15 +228,21 @@
 
     <script>
         document.getElementById("teamIntro").addEventListener("click", function() {
-            document.getElementById("팀소개").scrollIntoView({ behavior: "smooth" });
+            document.getElementById("팀소개").scrollIntoView({
+                behavior: "smooth"
+            });
         });
 
         document.getElementById("teamContent").addEventListener("click", function() {
-            document.getElementById("팀내용").scrollIntoView({ behavior: "smooth" });
+            document.getElementById("팀내용").scrollIntoView({
+                behavior: "smooth"
+            });
         });
 
         document.getElementById("teamMembers").addEventListener("click", function() {
-            document.getElementById("멤버").scrollIntoView({ behavior: "smooth" });
+            document.getElementById("멤버").scrollIntoView({
+                behavior: "smooth"
+            });
         });
 
         // 방명록이 아직 없으므로 alert를 추가해놓음
@@ -180,4 +251,5 @@
         });
     </script>
 </body>
+
 </html>
