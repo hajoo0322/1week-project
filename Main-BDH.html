@@ -216,33 +216,36 @@
             /* 어두운 회색 */
         }
     </style>
+
+
 </head>
 
 <body class="MainBody">
 
     <div class="sideBox">
-        <h1 class="voteText">짬뽕 VS 짜장</h1>
+        <h1 class="voteText">팥붕 VS 슈붕</h1>
         <div class="graph">
             <!-- 그래프가 여기에 렌더링됨 (기본적으로 빈칸) -->
             <span>결과 없음</span>
         </div>
         <div class="votes">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="팥붕">
                 <label class="form-check-label" for="flexRadioDefault1">
-                    짜장
+                    팥붕
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="슈붕"
+                    checked>
                 <label class="form-check-label" for="flexRadioDefault2">
-                    짬뽕
+                    슈붕
                 </label>
             </div>
         </div>
         <div class="buttons">
-            <button type="button1" class="btn btn-outline-dark">vote</button>
-            <button type="button2" class="btn btn-outline-primary">show</button>
+            <button type="button1" class="btn btn-outline-dark" id="voteBtn">vote</button>
+            <button type="button2" class="btn btn-outline-primary" id="showResultsBtn">show</button>
         </div>
     </div>
 
@@ -296,6 +299,49 @@
     <div class="ThirdBox">
 
     </div>
+
+
+    <script>
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+            authDomain: "sprta-f3322.firebaseapp.com",
+            projectId: "sprta-f3322",
+            storageBucket: "sprta-f3322.firebasestorage.app",
+            messagingSenderId: "56818984443",
+            appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+            measurementId: "G-WZLQRD938T"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        document.getElementById('voteBtn').addEventListener('click', function () {
+            const selectedValue = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+            const foodRef = db.ref('votes/' + selectedValue);
+
+            foodRef.transaction((currentValue) => {
+                return (currentValue || 0) + 1;
+            }).then(() => {
+                alert('투표가 완료되었습니다!');
+            }).catch((error) => {
+                console.error('투표 중 오류 발생:', error);
+            });
+        });
+
+
+
+    </script>
 </body>
 
 </html>
