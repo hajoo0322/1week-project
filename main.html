@@ -58,7 +58,7 @@
         }
 
         .nav-ul li {
-            font-size: 1rem;
+            font-size: 1.5rem;
             display: inline;
             text-align: center;
             flex-grow: 1;
@@ -87,7 +87,7 @@
 
         .SMN_effect-14:before {
             position: absolute;
-            top: 70%;
+            top: 100%;
             left: 50%;
             color: transparent;
             content: '•';
@@ -224,6 +224,19 @@
             margin: 20px auto;
         }
         /* 방명록 */
+
+        /* 날씨위젯 */
+        #weather-widget {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 1rem;
+            border: 1px solid #0077b6;
+            background-color: #ffffff;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        /* 날씨위젯 */
 
     </style>
     <script type="module">
@@ -488,9 +501,8 @@
         </ul>
     </nav>
 
-    <!-- 일기예보 -->
-    <div id="weather-widget"
-        style="position: absolute; top: 10px; right: 10px; padding: 1rem; border: 1px solid #0077b6; background-color: #ffffff; border-radius: 5px;">
+    <!-- 일기예보 위젯 -->
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded" id="weather-widget">
         <h4>단기예보</h4>
         <div id="forecast"></div>
     </div>
