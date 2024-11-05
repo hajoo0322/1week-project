@@ -27,6 +27,17 @@
 
         /* 제목 */
 
+        /* 시계 */
+        .clock {
+
+            width: 60%;
+            margin: 0px auto;
+            text-align: right;
+            font-size: 3em;
+            color: #333;
+        }
+        /* 시계 */
+
         /* 네비게이션바 */
         .nav {
             border-top: solid 1px #0077b6;
@@ -43,6 +54,17 @@
         }
 
         .nav-ul li {
+            font-size: 1rem;
+            display: inline;
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .nav-ul p {
             font-size: 1rem;
             display: inline;
             text-align: center;
@@ -172,13 +194,15 @@
             margin: 0;
         }
 
-        /* 멤버내용 */
         .team {
             width: 1200px;
 
             margin: 20px auto 20px auto;
         }
 
+        /* 멤버내용 */
+
+        /* 방명록 */
         .guestbook {
             width: 1000px;
             background-color: #ade8f4;
@@ -186,7 +210,7 @@
             margin: 70px auto 70px auto;
 
             /* border: 2px solid black; */
-            border-radius: 5px;
+            border-radius: 15px;
             padding: 20px;
         }
 
@@ -195,10 +219,12 @@
             width: 100%;
         }
 
+        /* 방명록 */
+
+        /* 방명록 카드 */
         .guestbookcard {
             width: 1300px;
-            border: 2px solid white;
-            border-radius: 5px;
+            border-radius: 15px;
 
             background-color: #ade8f4;
 
@@ -210,13 +236,19 @@
             transform: translateY(-10px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
-    </style>
 
+        /* 방명록 카드 */
+    </style>
+    <script>
+        
+    </script>
 </head>
 
 <body>
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
+
+
     <nav class="nav">
         <ul class="nav-ul">
             <li id="teamIntro" class="SMN_effect-14">팀 소개</li>
@@ -322,20 +354,8 @@
         <button type="button" class="btn btn-outline-dark">방명록 저장하기</button>
     </div>
 
-    <div>
-        <div class="guestbookcard">
-            <div class="card-body">
-                <h3>이름</h3>
-                <p>방명록 내용</p>
-            </div>
-        </div>
+    <div id="card">
 
-        <div class="guestbookcard">
-            <div class="card-body">
-                <h3>이름</h3>
-                <p>방명록 내용</p>
-            </div>
-        </div>
     </div>
 
 </body>
