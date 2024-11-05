@@ -141,13 +141,14 @@
         measurementId: "G-WZLQRD938T"
      };
 
+     
      const db = getFirestore(app);
      $("#postingbtn").click(async function () {
             let date = $('#date').val();
 
             await addDoc(collection(db, "teamtemple"), date);
         })
-        
+
 </script>
 
 <body>
