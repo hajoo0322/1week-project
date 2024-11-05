@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
+        
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hi+Melody&family=Jua&family=Poor+Story&family=Rubik:wght@300&display=swap');
 
@@ -19,11 +19,7 @@
             font-style: normal;
         }
 
-        .body {
-            background-image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011";
-            background-position: center;
-            background-size: cover;
-        }
+    
     
         /* 제목 */
         .h1 {
@@ -62,7 +58,7 @@
         }
 
         .nav-ul li {
-            font-size: 1rem;
+            font-size: 1.5rem;
             display: inline;
             text-align: center;
             flex-grow: 1;
@@ -91,7 +87,7 @@
 
         .SMN_effect-14:before {
             position: absolute;
-            top: 70%;
+            top: 100%;
             left: 50%;
             color: transparent;
             content: '•';
@@ -141,17 +137,17 @@
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
-            width: 80%;
+            width: 65%;
             margin: 5rem auto;
         }
 
         .팀카드 {
             background-color: #caf0f8;
             font-size: 1.1rem;
-            width: 45%;
+            width: 30%;
             padding: 1.5rem;
             height: auto;
-            margin: 1.5rem;
+            margin: 0;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -228,6 +224,19 @@
             margin: 20px auto;
         }
         /* 방명록 */
+
+        /* 날씨위젯 */
+        #weather-widget {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 1rem;
+            border: 1px solid #0077b6;
+            background-color: #ffffff;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        /* 날씨위젯 */
 
     </style>
     <script type="module">
@@ -428,21 +437,39 @@
                 }
             });
         }
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const {
-                    latitude,
-                    longitude
-                } = position.coords;
-                const nx = 60;
-                const ny = 127;
-                fetchWeatherData(nx, ny);
-            }, error => {
-                console.error("위치 정보를 가져오는 중 오류 발생: ", error);
-            });
-        } else {
-            console.log("사용자의 위치 정보를 가져올 수 없습니다.");
-        }
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(position => {
+        //         const {
+        //             latitude,
+        //             longitude
+        //         } = position.coords;
+        //         const nx = 60;
+        //         const ny = 127;
+        //         fetchWeatherData(nx, ny);
+        //     }, error => {
+        //         console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+        //     });
+        // } else {
+        //     console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+        // }
+        if (localStorage.getItem('userPosition')) {
+    const position = JSON.parse(localStorage.getItem('userPosition'));
+    fetchWeatherData(position.nx, position.ny);
+} else {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            const nx = 60;  // 원하는 값으로 대체
+            const ny = 127; // 원하는 값으로 대체
+            localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
+            fetchWeatherData(nx, ny);
+        }, error => {
+            console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+        });
+    } else {
+        console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+    }
+}
         // 일기예보
 
 
@@ -492,9 +519,8 @@
         </ul>
     </nav>
 
-    <!-- 일기예보 -->
-    <div id="weather-widget"
-        style="position: absolute; top: 10px; right: 10px; padding: 1rem; border: 1px solid #0077b6; background-color: #ffffff; border-radius: 5px;">
+    <!-- 일기예보 위젯 -->
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded" id="weather-widget">
         <h4>단기예보</h4>
         <div id="forecast"></div>
     </div>
