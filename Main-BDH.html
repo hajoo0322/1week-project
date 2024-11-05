@@ -79,7 +79,7 @@
             display: inline-block;
         }
 
-        h1 {
+        .myInfo {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -125,6 +125,13 @@
             font-size: 2vh;
         }
 
+        .greeting {
+            font-size: 1.2em;
+            margin-left: 20px;
+            margin-right: 20px;
+            color: #555555;
+        }
+
         .LowerBox {
             display: block;
             width: 98%;
@@ -142,8 +149,9 @@
             box-sizing: border-box;
             border-radius: 8px;
         }
-        
+
         .firstIntro {
+            font-size: 3vh;
             margin: 1% 0 0 1%;
 
         }
@@ -159,12 +167,97 @@
             border-radius: 8px;
         }
 
-        .greeting {
-            font-size: 1.2em;
-            margin-left: 20px;
-            margin-right: 20px;
-            color: #555555;
-            /* 어두운 회색 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container2 {
+            display: flex;
+            /* flexbox 사용 */
+            flex-wrap: wrap;
+            /* 줄바꿈을 허용하여 여러 줄로 배치 */
+            justify-content: space-between;
+            /* 박스 사이에 여백을 고르게 배분 */
+            width: 90%;
+            /* 컨테이너 너비 */
+            margin: 20px auto;
+            /* 컨테이너 중앙 정렬 */
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            display: flex;
+            /* Flexbox 활성화 */
+            flex-wrap: wrap;
+            /* 자동 줄 바꿈 허용 */
+            justify-content: space-between;
+        }
+
+        .section h2 {
+            text-align: left;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: black;
+            margin-top: 5px;
+        }
+
+        .box {
+            width: 20%;
+            height: 30%;
+            margin: 1%;
+            display: inline-block;
+            box-sizing: border-box;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .box img {
+            display: block;
+            /* 이미지 블록으로 설정 */
+            margin: 0 auto;
+            /* 자동 여백으로 가운데 정렬 */
+            width: auto;
+            max-width: 100%;
+            /* 박스 너비에 맞춤 */
+            height: auto;
+            max-height: 15vh;
+            /* 원하는 높이 설정 */
+            object-fit: cover;
+            /* 비율 유지하며 박스에 맞게 잘림 */
+            border-radius: 8px;
+            /* 이미지 모서리 둥글게 */
+            margin-bottom: 10px;
+        }
+
+        .description {
+            padding: 10px;
+            color: black;
+            text-align: center;
         }
     </style>
 </head>
@@ -184,7 +277,7 @@
             </div>
 
             <div class="container">
-                <h1>나의 정보</h1>
+                <h1 class="myInfo">나의 정보</h1>
                 <div class="info-box">
                     <div class="minInfoBoxes">
                         <div class="info-item">이름: 방동혁</div>
@@ -211,13 +304,50 @@
 
         <div class="LowerBox">
             <div class="firstIntroBox">
-                <div class="firstIntro">어려서부터 우리 집은 가난했었고, 남들 다 하는 외식 한 번 한 적이 없었고, 일터에 나가신 어머님 집에 없으면 언제나 혼자서 끓여먹었던 라면. 그러다 어느날 라면이 너무 지겨워서 맛있는 것좀 먹자고 대들었었어.</div>
+                <div class="firstIntro">어려서부터 우리 집은 가난했었고, 남들 다 하는 외식 한 번 한 적이 없었고, 일터에 나가신 어머님 집에 없으면 언제나 혼자서 끓여먹었던 라면.
+                    그러다 어느날 라면이 너무 지겨워서 맛있는 것좀 먹자고 대들었었어.</div>
             </div>
         </div>
     </div>
 
     <div class="ThirdBox">
-
+        <h1>Past & Future</h1>
+        <div class="container2">
+            <div class="sidebar">
+                <div class="section">
+                    <h2>Past</h2>
+                    <div class="box">
+                        <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
+                            alt="Past Image 1">
+                        <div class="description">간단한 설명 1</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://kormedi.com/wp-content/uploads/2022/04/ck_tica1010005154_l-580x387.jpg"
+                            alt="Past Image 2">
+                        <div class="description">간단한 설명 2</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://image.bugsm.co.kr/album/images/500/203001/20300127.jpg" alt="Past Image 3">
+                        <div class="description">간단한 설명 3</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Future</h2>
+                    <div class="box">
+                        <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
+                        <div class="description">간단한 설명 4</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg" alt="Future Image 2">
+                        <div class="description">간단한 설명 5</div>
+                    </div>
+                    <div class="box">
+                        <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/04/12/106357558.1.jpg" alt="Future Image 3">
+                        <div class="description">간단한 설명 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
