@@ -139,9 +139,14 @@
         appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
 
         measurementId: "G-WZLQRD938T"
+     };
 
-    };
+     const db = getFirestore(app);
+     $("#postingbtn").click(async function () {
+            let date = $('#date').val();
 
+            await addDoc(collection(db, "teamtemple"), date);
+        })
 </script>
 
 <body>
@@ -203,9 +208,9 @@
         <div class="card-footer">
             <form onsubmit="addComment(event)" style="display: flex; align-items: center; ">
                 <div class="remain">
-                    <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
+                    <input id="data" type="text" class="form-control" placeholder="댓글을 입력하세요" required>
                 </div>
-                <button type="submit" class="datbutton">작성</button>
+                <button id="postingbtn" type="submit" class="datbutton">작성</button>
             </form>
             <div class="comments mt-3">
             </div>
