@@ -216,12 +216,21 @@
             /* 어두운 회색 */
         }
     </style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- jQuery 라이브러리 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+    <!-- Chart.js 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, doc, updateDoc, getDoc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // Firebase 구성 초기화
         const firebaseConfig = {
             apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
             authDomain: "sprta-f3322.firebaseapp.com",
@@ -236,26 +245,95 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-
         $(document).ready(function () {
-            $('#voteBtn').on('click', function () {
+            // 투표 버튼 클릭 이벤트 처리
+            $('#voteBtn').on('click', async function () {
                 const selectedValue = $('input[name="flexRadioDefault"]:checked').val();
-                const foodRef = db.ref('votes/' + selectedValue);
 
-                foodRef.transaction((currentValue) => {
-                    return (currentValue || 0) + 1;
-                }).then(() => {
-                    alert('투표가 완료되었습니다!');
-                }).catch((error) => {
-                    console.error('투표 중 오류 발생:', error);
-                });
+                if (selectedValue) {
+                    try {
+                        // Firestore에서 선택한 값에 해당하는 문서 참조
+                        const voteDocRef = doc(db, "votes", selectedValue);
+                        const voteDoc = await getDoc(voteDocRef);
+
+                        if (voteDoc.exists()) {
+                            // 기존 값이 있을 경우 업데이트
+                            const currentCount = voteDoc.data().count || 0;
+                            await updateDoc(voteDocRef, { count: currentCount + 1 });
+                        } else {
+                            // 새로운 값 추가
+                            await setDoc(voteDocRef, { count: 1 });
+                        }
+
+                        alert('투표가 완료되었습니다!');
+                    } catch (error) {
+                        console.error('투표 중 오류 발생:', error);
+                    }
+                } else {
+                    alert('선택된 항목이 없습니다.');
+                }
+            });
+
+            // 결과 보기 버튼 클릭 이벤트 처리
+            $('#showResultsBtn').on('click', async function () {
+                try {
+                    // Firestore에서 votes 컬렉션의 모든 문서 가져오기
+                    const querySnapshot = await getDocs(collection(db, "votes"));
+                    const votesData = {};
+                    
+                    // 가져온 데이터를 votesData 객체에 저장
+                    querySnapshot.forEach((doc) => {
+                        votesData[doc.id] = doc.data().count;
+                    });
+
+                    // 차트 데이터를 생성
+                    const labels = Object.keys(votesData);
+                    const data = Object.values(votesData);
+
+                    // 기존의 차트를 제거하고 새로 생성
+                    $('#voteChart').remove(); // 기존 캔버스를 제거
+                    $('.graph').html('<canvas id="voteChart"></canvas>'); // 새로운 캔버스 추가
+
+                    // Chart.js를 이용하여 차트 그리기
+                    const ctx = document.getElementById('voteChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '투표 결과',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: '투표 결과'
+                                }
+                            }
+                        }
+                    });
+
+                } catch (error) {
+                    console.error('결과를 가져오는 중 오류 발생:', error);
+                }
             });
         });
-
-
-
     </script>
-
 </head>
 
 <body class="MainBody">
