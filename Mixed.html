@@ -6,11 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         .MainBody {
             background-color: violet;
             width: 97%;
             height: 600vh;
+        }
+
+        .sideBox {
+            background-color: white;
+            width: 20vh;
+            height: 30vh;
+            top: 25vh;
+            right: 1vh;
+            position: fixed;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .voteText {
+            font-size: 2vh;
+            margin-bottom: 10px;
+        }
+
+        .graph {
+            width: 15vh;
+            height: 15vh;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .votes {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .buttons {
+            justify-content: space-between;
+            margin-top: 2vh;
+        }
+
+        .button {
+            width: 40%;
+            height: 20%;
         }
 
         .FirstBox {
@@ -20,7 +69,7 @@
             align-items: center;
             width: 100%;
             height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
+            margin: 2vh 4vh 3vh 2vh;
             padding: 10px;
             box-sizing: border-box;
             border-radius: 8px;
@@ -40,7 +89,7 @@
             display: block;
             width: 100%;
             height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
+            margin: 2vh 4vh 3vh 2vh;
             padding: 10px;
             box-sizing: border-box;
             border-radius: 8px;
@@ -125,13 +174,6 @@
             font-size: 2vh;
         }
 
-        .greeting {
-            font-size: 2vh;
-            margin-left: 20px;
-            margin-right: 20px;
-            color: #555555;
-        }
-
         .LowerBox {
             display: block;
             width: 98%;
@@ -151,9 +193,16 @@
         }
 
         .firstIntro {
-            font-size: 3vh;
             margin: 1% 0 0 1%;
 
+        }
+
+        .greeting {
+            font-size: 1.2em;
+            margin-left: 20px;
+            margin-right: 20px;
+            color: #555555;
+            /* 어두운 회색 */
         }
 
         .ThirdBox {
@@ -162,7 +211,7 @@
             width: 100%;
             height: 95vh;
             margin: 2vh 1vh 3vh 3vh;
-            padding: 10px;
+            padding: 2vh;
             box-sizing: border-box;
             border-radius: 8px;
         }
@@ -177,8 +226,9 @@
             padding: 20px;
         }
 
-        h1 {
-            margin-bottom: 20px;
+        .PNF {
+            font-size: 5vh; /* 🟡 새로 추가된 코드 */
+            margin-bottom: 2vh;
             text-align: center;
         }
 
@@ -196,13 +246,11 @@
         }
 
         .section {
-            margin-bottom: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            width: 100%;
         }
 
         .section h2 {
+            font-size: 3vh;
             text-align: left;
             position: relative;
         }
@@ -210,35 +258,49 @@
         .section h2::after {
             content: "";
             display: block;
-            width: 100%;
-            height: 2px;
+            width: 30%;
+            height: 0.3vh;
             background: black;
-            margin-top: 5px;
+        }
+
+        .SecondForth {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            padding-top: 2vh;
+        }
+
+        .ForthForth {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            padding-top: 2vh;
         }
 
         .box {
-            width: 20%;
-            height: 30%;
-            margin: 1%;
-            display: inline-block;
-            box-sizing: border-box;
-            border: 2px solid white;
+            aspect-ratio: 2 / 3;
+            max-height: 30vh;
+            width: 28vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1vh;
             background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid white;
             border-radius: 10px;
-            padding: 10px;
-            position: relative;
+            padding: 1vh;
         }
 
         .box img {
-            display: block;
-            margin: 0 auto;
             width: auto;
             max-width: 100%;
             height: auto;
-            max-height: 15vh;
-            object-fit: cover;
+            max-height: 75%;
+            object-fit: contain;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 1vh;
         }
 
         .description {
@@ -247,9 +309,156 @@
             text-align: center;
         }
     </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- jQuery 라이브러리 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+    <!-- Chart.js 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, doc, updateDoc, getDoc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 초기화
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+            authDomain: "sprta-f3322.firebaseapp.com",
+            projectId: "sprta-f3322",
+            storageBucket: "sprta-f3322.firebasestorage.app",
+            messagingSenderId: "56818984443",
+            appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+            measurementId: "G-WZLQRD938T"
+        };
+
+        // Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $(document).ready(function () {
+            // 투표 버튼 클릭 이벤트 처리
+            $('#voteBtn').on('click', async function () {
+                const selectedValue = $('input[name="flexRadioDefault"]:checked').val();
+
+                if (selectedValue) {
+                    try {
+                        // Firestore에서 선택한 값에 해당하는 문서 참조
+                        const voteDocRef = doc(db, "votes", selectedValue);
+                        const voteDoc = await getDoc(voteDocRef);
+
+                        if (voteDoc.exists()) {
+                            // 기존 값이 있을 경우 업데이트
+                            const currentCount = voteDoc.data().count || 0;
+                            await updateDoc(voteDocRef, { count: currentCount + 1 });
+                        } else {
+                            // 새로운 값 추가
+                            await setDoc(voteDocRef, { count: 1 });
+                        }
+
+                        alert('투표가 완료되었습니다!');
+                    } catch (error) {
+                        console.error('투표 중 오류 발생:', error);
+                    }
+                } else {
+                    alert('선택된 항목이 없습니다.');
+                }
+            });
+
+            // 결과 보기 버튼 클릭 이벤트 처리
+            $('#showResultsBtn').on('click', async function () {
+                try {
+                    // Firestore에서 votes 컬렉션의 모든 문서 가져오기
+                    const querySnapshot = await getDocs(collection(db, "votes"));
+                    const votesData = {};
+
+                    // 가져온 데이터를 votesData 객체에 저장
+                    querySnapshot.forEach((doc) => {
+                        votesData[doc.id] = doc.data().count;
+                    });
+
+                    // 차트 데이터를 생성
+                    const labels = Object.keys(votesData);
+                    const data = Object.values(votesData);
+
+                    // 기존의 차트를 제거하고 새로 생성
+                    $('#voteChart').remove(); // 기존 캔버스를 제거
+                    $('.graph').html('<canvas id="voteChart"></canvas>'); // 새로운 캔버스 추가
+
+                    // Chart.js를 이용하여 차트 그리기
+                    const ctx = document.getElementById('voteChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '투표 결과',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: '투표 결과'
+                                }
+                            }
+                        }
+                    });
+
+                } catch (error) {
+                    console.error('결과를 가져오는 중 오류 발생:', error);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body class="MainBody">
+
+    <div class="sideBox">
+        <h1 class="voteText">팥붕 VS 슈붕</h1>
+        <div class="graph">
+            <!-- 그래프가 여기에 렌더링됨 (기본적으로 빈칸) -->
+            <span>결과 없음</span>
+        </div>
+        <div class="votes">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="팥붕">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    팥붕
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="슈붕"
+                    checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    슈붕
+                </label>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button1" class="btn btn-outline-dark" id="voteBtn">vote</button>
+            <button type="button2" class="btn btn-outline-primary" id="showResultsBtn">show</button>
+        </div>
+    </div>
+
     <div class="FirstBox">
         <div class="Firstgreeting">
             Welcome, fellas!
@@ -298,50 +507,63 @@
     </div>
 
     <div class="ThirdBox">
-        <h1>Past & Future</h1>
+        <h1 class="PNF">Past & Future</h1>
         <div class="container2">
             <div class="sidebar">
                 <div class="section">
-                    <h2>Past</h2>
-                    <div class="box">
-                        <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
-                            alt="Past Image 1">
-                        <div class="description">간단한 설명 1</div>
+                    <div class="firstForth">
+                        <h2>Past</h2>
                     </div>
-                    <div class="box">
-                        <img src="https://kormedi.com/wp-content/uploads/2022/04/ck_tica1010005154_l-580x387.jpg"
-                            alt="Past Image 2">
-                        <div class="description">간단한 설명 2</div>
+
+                    <div class="SecondForth">
+                        <div class="box">
+                            <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
+                                alt="Past Image 1">
+                            <div class="description">간단한 설명 1</div>
+                        </div>
+                        <div class="box">
+                            <img src="https://kormedi.com/wp-content/uploads/2022/04/ck_tica1010005154_l-580x387.jpg"
+                                alt="Past Image 2">
+                            <div class="description">간단한 설명 2</div>
+                        </div>
+                        <div class="box">
+                            <img src="https://image.bugsm.co.kr/album/images/500/203001/20300127.jpg"
+                                alt="Past Image 3">
+                            <div class="description">간단한 설명 3</div>
+                        </div>
                     </div>
-                    <div class="box">
-                        <img src="https://image.bugsm.co.kr/album/images/500/203001/20300127.jpg" alt="Past Image 3">
-                        <div class="description">간단한 설명 3</div>
-                    </div>
+
                 </div>
+
                 <div class="section">
-                    <h2>Future</h2>
-                    <div class="box">
-                        <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
-                        <div class="description">간단한 설명 4</div>
+                    <div class="ThirdForth">
+                        <h2>Future</h2>
                     </div>
-                    <div class="box">
-                        <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg"
-                            alt="Future Image 2">
-                        <div class="description">간단한 설명 5</div>
+
+                    <div class="ForthForth">
+                        <div class="box">
+                            <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
+                            <div class="description">간단한 설명 4</div>
+                        </div>
+                        <div class="box">
+                            <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg"
+                                alt="Future Image 2">
+                            <div class="description">간단한 설명 5</div>
+                        </div>
+                        <div class="box">
+                            <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/04/12/106357558.1.jpg"
+                                alt="Future Image 3">
+                            <div class="description">간단한 설명 6</div>
+                        </div>
                     </div>
-                    <div class="box">
-                        <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/04/12/106357558.1.jpg"
-                            alt="Future Image 3">
-                        <div class="description">간단한 설명 6</div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="ThirdBox">
 
-    </div>
+
 </body>
 
 </html>
