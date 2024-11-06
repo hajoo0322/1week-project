@@ -63,6 +63,45 @@
             height: 20%;
         }
 
+        .contact-box {
+            position: fixed;
+            bottom: 2vh;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 10vh;
+            max-width: 10vw;
+            max-height: 10vh;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .content {
+            font-size: 2vh;
+            width: 100%;
+            height: 40%;
+            max-width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-text {
+            margin-top: 1vh;
+            text-align: center;
+        }
+
+        .contactButtons {
+            display: flex;
+            gap: 1vh;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1vh;
+        }
+
         .FirstBox {
             background-color: lightpink;
             display: flex;
@@ -673,6 +712,24 @@
         </div>
     </div>
 
+    <div class="box contact-box">
+        <div class="content" style="width: 18rem;">
+            <div class="card-body">
+                <p class="content-text">Contact Me</p>
+                <div class="contactButtons">
+                    <button>
+                        <a class="content-button1" role="button" aria-disabled="true">Link</a>
+                    </button>
+                    <button>
+                        <a class="content-button2" role="button" aria-disabled="true">Link</a>
+                    </button>
+                    <button>
+                        <a class="content-button3" role="button" aria-disabled="true">Link</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
