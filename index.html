@@ -24,7 +24,7 @@
             background-position: center;
             background-size: cover;
         }
-    
+
         /* 제목 */
         .h1 {
             font-size: 4rem;
@@ -227,8 +227,8 @@
             padding: 20px;
             margin: 20px auto;
         }
-        /* 방명록 */
 
+        /* 방명록 */
     </style>
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
@@ -472,6 +472,11 @@
                 behavior: "smooth"
             });
         });
+
+        document.getElementById("goLogin").addEventListener("click", function () {
+            // 로그인 페이지로 이동하도록 설정
+            window.location.href = "login.html";
+        });
     </script>
 </head>
 
@@ -489,6 +494,7 @@
             <li id="teamContent" class="SMN_effect-14">팀 내용</li>
             <li id="teamMembers" class="SMN_effect-14">멤버</li>
             <li id="guestbook" class="SMN_effect-14">방명록</li>
+            <li id="goLogin" class="SMN_effect-14">로그인하기</li>
         </ul>
     </nav>
 
@@ -583,7 +589,7 @@
     </div>
 
     <!-- 방명록 작성하기 -->
-     <div class="guestbook" id="방명록">
+    <div class="guestbook" id="방명록">
         <h2>방명록 작성하기</h2>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">이름</label>
@@ -591,7 +597,8 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">방명록 내용 적기</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="응원 한마디 적어주세요!!"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="응원 한마디 적어주세요!!"></textarea>
         </div>
         <button type="button" class="btn btn-outline-dark" id="guestbookbtn">방명록 저장하기</button>
     </div>
