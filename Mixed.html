@@ -235,27 +235,35 @@
             position: relative;
         }
 
-        .center-image {
-            width: 30vh;
-            height: 45vh;
+        .card {
+            width: auto;
+            height: auto;
+            max-width: 20vw;
+            max-height: 35vh;
             overflow: hidden;
             border-radius: 10px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .center-image img {
+        .card img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
-        .scattered-images .image1,
-        .scattered-images .image2,
-        .scattered-images .image3,
-        .scattered-images .image4 {
+        .card:hover {
+            transform: translate(-50%, -60%) translateY(-10px);
+            box-shadow: 0 2vh 5vh rgba(0, 0, 0, 0.3);
+        }
+
+        .scattered-images .card1,
+        .scattered-images .card2,
+        .scattered-images .card3,
+        .scattered-images .card4 {
             width: 18vh;
             height: 18vh;
             position: absolute;
@@ -263,25 +271,25 @@
             object-fit: cover;
         }
 
-        .image1 {
+        .card1 {
             top: 10%;
             left: 5%;
             transform: rotate(-10deg);
         }
 
-        .image2 {
+        .card2 {
             top: 10%;
             right: 10%;
             transform: rotate(8deg);
         }
 
-        .image3 {
+        .card3 {
             bottom: 15%;
             left: 8%;
             transform: rotate(-5deg);
         }
 
-        .image4 {
+        .card4 {
             bottom: 20%;
             right: 12%;
             transform: rotate(12deg);
@@ -593,18 +601,18 @@
         <h1 class="title">My hobbies</h1>
 
         <div class="scattered-images">
-            <div class="center-image">
+            <div class="card">
                 <img src="https://ssl.nexon.com/s2/game/elancia/elancia2007/image/game_info/map/map1/img1.gif"
                     alt="중앙 이미지">
             </div>
             <img src="https://image.kmib.co.kr/online_image/2019/0728/611411110013545176_1.jpg" alt="이미지 1"
-                class="image1">
+                class="card1">
             <img src="https://cgeimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=3&simg=202306121645060038242kpm_00.jpg&nmt=48"
-                alt="이미지 2" class="image2">
+                alt="이미지 2" class="card2">
             <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
-                alt="이미지 3" class="image3">
+                alt="이미지 3" class="card3">
             <img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/14890745/1673260374999/NjgyOTM3Yjk5MGFiNzhkZDQ1YmY3NjU1MzA3OGM4MTNmZDhlMGJiMzhlYTdhZjAzZTYwNjFlZDJhNjExNmJlMS5qcGc=.jpeg?q=82&s=640x640&t=crop"
-                alt="이미지 4" class="image4">
+                alt="이미지 4" class="card4">
         </div>
     </div>
 
