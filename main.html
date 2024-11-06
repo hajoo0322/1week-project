@@ -499,6 +499,11 @@
                 behavior: "smooth"
             });
         });
+
+        document.getElementById("goLogin").addEventListener("click", function () {
+            // 로그인 페이지로 이동하도록 설정
+            window.location.href = "login.html";
+        });
     </script>
 </head>
 
@@ -516,6 +521,7 @@
             <li id="teamContent" class="SMN_effect-14">팀 내용</li>
             <li id="teamMembers" class="SMN_effect-14">멤버</li>
             <li id="guestbook" class="SMN_effect-14">방명록</li>
+            <li id="goLogin" class="SMN_effect-14">로그인하기</li>
         </ul>
     </nav>
 
