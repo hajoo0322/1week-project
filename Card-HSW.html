@@ -12,7 +12,7 @@
         .MainBody {
             background-color: violet;
             width: 97%;
-            height: 4g00vh;
+            height: 600vh;
         }
 
         .sideBox {
@@ -27,7 +27,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 100;
         }
 
         .voteText {
@@ -63,45 +62,6 @@
             height: 20%;
         }
 
-        .contact-box {
-            position: fixed;
-            bottom: 2vh;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 10vh;
-            max-width: 10vw;
-            max-height: 10vh;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-        }
-
-        .content {
-            font-size: 2vh;
-            width: 100%;
-            height: 40%;
-            max-width: 100%;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-text {
-            margin-top: 1vh;
-            text-align: center;
-        }
-
-        .contactButtons {
-            display: flex;
-            gap: 1vh;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1vh;
-        }
-
         .FirstBox {
             background-color: lightpink;
             display: flex;
@@ -109,7 +69,7 @@
             align-items: center;
             width: 100%;
             height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
+            margin: 2vh 4vh 3vh 2vh;
             padding: 10px;
             box-sizing: border-box;
             border-radius: 8px;
@@ -129,7 +89,7 @@
             display: block;
             width: 100%;
             height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
+            margin: 2vh 4vh 3vh 2vh;
             padding: 10px;
             box-sizing: border-box;
             border-radius: 8px;
@@ -140,9 +100,10 @@
             height: 45%;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            padding: 2vh;
-            margin-bottom: 0;
+            width: auto;
+            padding: 10px 10px 10px 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
         }
 
         .firstPic {
@@ -150,27 +111,24 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            width: 30%;
+            width: 40%;
             height: 100%;
             border-radius: 8px;
             display: inline-block;
-            margin-right: 10vh;
-            margin: 2vh;
         }
 
         .container {
             background-image: url('https://media.istockphoto.com/id/1300107681/ko/%EC%82%AC%EC%A7%84/%EB%8C%80%EC%84%9C%EC%96%91-%EC%9D%98-%ED%91%9C%EB%A9%B4.jpg?s=612x612&w=0&k=20&c=p_vW3L_1A7moSNqHpavoW8EmmiiKOM4bwQM7rSvt5OY=');
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 100% auto;
-            width: 40vw;
+            background-size: cover;
+            width: 45%;
             height: 100%;
             border-radius: 8px;
             display: inline-block;
-            margin-right: 2vh;
         }
 
-        .myInfo {
+        h1 {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -218,10 +176,10 @@
 
         .LowerBox {
             display: block;
-            width: 100%;
+            width: 98%;
             height: 45%;
             align-items: center;
-            margin: 2vh auto 0;
+            margin: 2% auto 0;
         }
 
         .firstIntroBox {
@@ -239,210 +197,27 @@
 
         }
 
+        .ThirdBox {
+            background-color: lightpink;
+            display: block;
+            width: 100%;
+            height: 95vh;
+            margin: 2vh 4vh 3vh 2vh;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
         .greeting {
             font-size: 1.2em;
             margin-left: 20px;
             margin-right: 20px;
             color: #555555;
-        }
-
-        .ThirdBox {
-            position: relative;
-            background-color: lightpink;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
-            padding: 2vh;
-            box-sizing: border-box;
-            border-radius: 8px;
-            z-index: 1;
-        }
-
-        .title {
-            font-size: 3vh;
-            color: black;
-            margin-bottom: 3vh;
-        }
-
-        .scattered-images {
-
-            width: 80vw;
-            height: 80vh;
-            position: relative;
-        }
-
-        .card {
-            width: auto;
-            height: auto;
-            max-width: 20vw;
-            max-height: 35vh;
-            overflow: hidden;
-            border-radius: 10px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .card:hover {
-            transform: translate(-50%, -60%) translateY(-10px);
-            box-shadow: 0 2vh 5vh rgba(0, 0, 0, 0.3);
-        }
-
-        .scattered-images .card1,
-        .scattered-images .card2,
-        .scattered-images .card3,
-        .scattered-images .card4 {
-            width: 18vh;
-            height: 18vh;
-            position: absolute;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .card1 {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-10deg);
-        }
-
-        .card2 {
-            top: 10%;
-            right: 10%;
-            transform: rotate(8deg);
-        }
-
-        .card3 {
-            bottom: 15%;
-            left: 8%;
-            transform: rotate(-5deg);
-        }
-
-        .card4 {
-            bottom: 20%;
-            right: 12%;
-            transform: rotate(12deg);
-        }
-
-        .ForthBox {
-            background-color: lightpink;
-            display: block;
-            width: 100%;
-            height: 95vh;
-            margin: 2vh 1vh 3vh 3vh;
-            padding: 2vh;
-            box-sizing: border-box;
-            border-radius: 8px;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .PNF {
-            font-size: 5vh;
-            margin-bottom: 2vh;
-            text-align: center;
-        }
-
-        .container2 {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 90%;
-            margin: 20px auto;
-        }
-
-        .sidebar {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .section {
-            width: 100%;
-        }
-
-        .section h2 {
-            font-size: 3vh;
-            text-align: left;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: "";
-            display: block;
-            width: 30%;
-            height: 0.3vh;
-            background: black;
-        }
-
-        .SecondForth {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            padding-top: 2vh;
-        }
-
-        .ForthForth {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            padding-top: 2vh;
-        }
-
-        .box {
-            aspect-ratio: 2 / 3;
-            max-height: 30vh;
-            width: 28vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: 1vh;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 2px solid white;
-            border-radius: 10px;
-            padding: 1vh;
-        }
-
-        .box img {
-            width: auto;
-            max-width: 100%;
-            height: auto;
-            max-height: 75%;
-            object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 1vh;
-        }
-
-        .description {
-            padding: 1vh;
-            font-size: 1.5vh;
-            color: black;
-            text-align: center;
+            /* 어두운 회색 */
         }
     </style>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- jQuery 라이브러리 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
@@ -505,7 +280,7 @@
                     // Firestore에서 votes 컬렉션의 모든 문서 가져오기
                     const querySnapshot = await getDocs(collection(db, "votes"));
                     const votesData = {};
-
+                    
                     // 가져온 데이터를 votesData 객체에 저장
                     querySnapshot.forEach((doc) => {
                         votesData[doc.id] = doc.data().count;
@@ -604,7 +379,7 @@
             </div>
 
             <div class="container">
-                <h1 class="myInfo">나의 정보</h1>
+                <h1>나의 정보</h1>
                 <div class="info-box">
                     <div class="minInfoBoxes">
                         <div class="info-item">이름: 방동혁</div>
@@ -631,107 +406,16 @@
 
         <div class="LowerBox">
             <div class="firstIntroBox">
-                <div class="firstIntro"> 넣어는 놨지만 사실 뭘 적을지도 모르겠고. 그런 김에 대충 인생얘기나 하자면, 이과 >> 경영학과 >> 영/수 교사 >> 개발자의 길을 걷고 있는 잡탕인생 방동혁입니다.<br>
-                    학원 다니다가, 벌이는 나쁘지 않은데 뭔가 생활 패턴이 참 아쉽다 싶어서 학원 때려치고 나왔습니다!!! 물론 안되겠다 싶으면 다시 돌아갈 수도 있겠지만은.... 학원에선 나름 에이스였으니까 받아주지 않을까...하고 있습니다...<br>
-                    그래도! 지금까지 해본 바로는 개발 나름 재밌어서 잘 해보자는 마음이 매우 큽니다! 근데 이번 프론트엔드 맛보기 과제는 너무너무 힘이들었어요... 낙오되지 않게 멱살캐리해준 우리 팀원들 아주아주 감사합니다 ㅎㅎㅎ
-                </div>
+                <div class="firstIntro">어려서부터 우리 집은 가난했었고, 남들 다 하는 외식 한 번 한 적이 없었고, 일터에 나가신 어머님 집에 없으면 언제나 혼자서 끓여먹었던 라면.
+                    그러다 어느날 라면이 너무 지겨워서 맛있는 것좀 먹자고 대들었었어.</div>
             </div>
         </div>
     </div>
 
     <div class="ThirdBox">
-        <h1 class="title">My hobbies</h1>
 
-        <div class="scattered-images">
-            <div class="card">
-                <img src="https://ssl.nexon.com/s2/game/elancia/elancia2007/image/game_info/character/character1/img8.gif"
-                    alt="중앙 이미지">
-            </div>
-            <img src="https://image.kmib.co.kr/online_image/2019/0728/611411110013545176_1.jpg" alt="이미지 1"
-                class="card1">
-            <img src="https://cgeimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=3&simg=202306121645060038242kpm_00.jpg&nmt=48"
-                alt="이미지 2" class="card2">
-            <img src="https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
-                alt="이미지 3" class="card3">
-            <img src="https://dnvefa72aowie.cloudfront.net/business/bizPlatform/profile/14890745/1673260374999/NjgyOTM3Yjk5MGFiNzhkZDQ1YmY3NjU1MzA3OGM4MTNmZDhlMGJiMzhlYTdhZjAzZTYwNjFlZDJhNjExNmJlMS5qcGc=.jpeg?q=82&s=640x640&t=crop"
-                alt="이미지 4" class="card4">
-        </div>
     </div>
 
-    <div class="ForthBox">
-        <h1 class="PNF">Past & Future</h1>
-        <div class="container2">
-            <div class="sidebar">
-                <div class="section">
-                    <div class="firstForth">
-                        <h2>Past</h2>
-                    </div>
-
-                    <div class="SecondForth">
-                        <div class="box">
-                            <img src="https://www.korea.kr/newsWeb/resources/temp/images/000018/%EC%9B%83%EC%9D%8C%EC%B9%98%EB%A3%8C%EC%82%AC_%EB%B3%B8%EB%AC%B8.jpg"
-                                alt="Past Image 1">
-                            <div class="description">웃음심리치료 자격증!</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://www.vinemagazine.co.kr/wp-content/uploads/2020/09/wawa-view.png"
-                                alt="Past Image 2">
-                            <div class="description">학원(와와 은평점)</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://image.bugsm.co.kr/album/images/500/203001/20300127.jpg"
-                                alt="Past Image 3">
-                            <div class="description">강북구 나얼</div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="section">
-                    <div class="ThirdForth">
-                        <h2>Future</h2>
-                    </div>
-
-                    <div class="ForthForth">
-                        <div class="box">
-                            <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
-                            <div class="description">1인분 이상 하는 프로그래머</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg"
-                                alt="Future Image 2">
-                            <div class="description">결혼자금 마련!(을 위한 취업)</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/04/12/106357558.1.jpg"
-                                alt="Future Image 3">
-                            <div class="description">건강한 생활 루틴 가지기</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="box contact-box">
-        <div class="content" style="width: 18rem;">
-            <div class="card-body">
-                <p class="content-text">Contact Me</p>
-                <div class="contactButtons">
-                    <button>
-                        <a class="content-button1" role="button" aria-disabled="true">Link</a>
-                    </button>
-                    <button>
-                        <a class="content-button2" role="button" aria-disabled="true">Link</a>
-                    </button>
-                    <button>
-                        <a class="content-button3" role="button" aria-disabled="true">Link</a>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 </body>
