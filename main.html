@@ -19,7 +19,14 @@
             font-style: normal;
         }
 
-    
+        .wave {
+            position: absolute;
+            width: 100%;
+            top: -200px;
+            left: 0;
+            z-index: -1;
+            transition: top 5s ease;
+        }
     
         /* 제목 */
         .h1 {
@@ -524,6 +531,18 @@
             <li id="goLogin" class="SMN_effect-14">로그인하기</li>
         </ul>
     </nav>
+
+    <!-- 파도 이미지 -->
+    <img id="waveImage" class="wave" src="https://github.com/Lustella-123/Lustella-123/blob/main/%ED%8C%8C%EB%8F%84modified.png?raw=true" alt="파도 이미지">
+
+    <script>
+        $(document).ready(function () {
+            // 페이지가 로드된 후 1초 후에 파도 이미지가 아래로 내려가는 애니메이션을 실행합니다.
+            setTimeout(function () {
+                $('#waveImage').css('top', '0');
+            }, 1000);
+        });
+    </script>
 
     <!-- 일기예보 위젯 -->
     <div class="shadow p-3 mb-5 bg-body-tertiary rounded" id="weather-widget">
