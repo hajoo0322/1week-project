@@ -19,11 +19,55 @@
             font-style: normal;
         }
 
-        .body {
-            background-image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011";
-            background-position: center;
-            background-size: cover;
+
+        .sideBox {
+            background-color: white;
+            width: 20vh;
+            height: 30vh;
+            top: 25vh;
+            right: 1vh;
+            position: fixed;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .voteText {
+            font-size: 2vh;
+            margin-bottom: 10px;
+        }
+
+        .graph {
+            width: 15vh;
+            height: 15vh;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .votes {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .buttons {
+            justify-content: space-between;
+            margin-top: 2vh;
+        }
+
+        .button {
+            width: 40%;
+            height: 20%;
+        }
+
+
 
         /* 제목 */
         .h1 {
@@ -473,9 +517,25 @@
             });
         });
 
-        document.getElementById("goLogin").addEventListener("click", function () {
-            // 로그인 페이지로 이동하도록 설정
-            window.location.href = "login.html";
+
+        // 투표 관련 기능
+        $('#voteBtn').on('click', function () {
+            const selectedValue = $('input[name="flexRadioDefault"]:checked').val();
+            if (!selectedValue) {
+                alert('투표할 항목을 선택해주세요.');
+                return;
+            }
+
+            const voteRef = db.collection('votes').doc(selectedValue);
+
+            // Firestore에서 해당 문서의 count 필드를 1 증가
+            voteRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true })
+                .then(() => {
+                    alert('투표가 완료되었습니다!');
+                })
+                .catch((error) => {
+                    console.error('투표 중 오류 발생:', error);
+                });
         });
     </script>
 </head>
@@ -494,7 +554,6 @@
             <li id="teamContent" class="SMN_effect-14">팀 내용</li>
             <li id="teamMembers" class="SMN_effect-14">멤버</li>
             <li id="guestbook" class="SMN_effect-14">방명록</li>
-            <li id="goLogin" class="SMN_effect-14">로그인하기</li>
         </ul>
     </nav>
 
@@ -605,6 +664,35 @@
 
     <!-- 방명록 카드 표시 -->
     <div id="card"></div>
+
+
+    <!--투표용 사이드박스-->
+    <div class="sideBox">
+        <h1 class="voteText">팥붕 VS 슈붕</h1>
+        <div class="graph">
+            <!-- 그래프가 여기에 렌더링됨 (기본적으로 빈칸) -->
+            <span>결과 없음</span>
+        </div>
+        <div class="votes">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="팥붕">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    팥붕
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="슈붕"
+                    checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    슈붕
+                </label>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button1" class="btn btn-outline-dark" id="voteBtn">vote</button>
+            <button type="button2" class="btn btn-outline-primary" id="showResultsBtn">show</button>
+        </div>
+    </div>
 </body>
 
 </html>

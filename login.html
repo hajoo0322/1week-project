@@ -117,13 +117,13 @@
 
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-            apiKey: "AIzaSyAWXz7ovgnjee_RrUvg8lRmVzpcZwdiGlQ",
-            authDomain: "sparta-255c7.firebaseapp.com",
-            projectId: "sparta-255c7",
-            storageBucket: "sparta-255c7.firebasestorage.app",
-            messagingSenderId: "474190313252",
-            appId: "1:474190313252:web:57c867b5fdc42c09d0e5b1",
-            measurementId: "G-P2M5HNY85R"
+            apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+            authDomain: "sprta-f3322.firebaseapp.com",
+            projectId: "sprta-f3322",
+            storageBucket: "sprta-f3322.firebasestorage.app",
+            messagingSenderId: "56818984443",
+            appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+            measurementId: "G-WZLQRD938T"
         };
 
 
@@ -149,6 +149,8 @@
                     // Signed in
                     console.log(userCredential)
                     const user = userCredential.user;
+                    alert('로그인되셨습니다!');
+                    window.location.href = "index.html";
                     // ...
                 })
                 .catch((error) => {
@@ -159,7 +161,7 @@
         })
         // 로그인 기능
 
-        
+
         // 시간 불러오는 기능
         function updateTime() {
             const timeElement = document.getElementById("time");

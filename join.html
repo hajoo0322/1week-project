@@ -106,74 +106,74 @@
             background-color: #ff8849;
         }
     </style>
-<script type="module">
-    // Firebase SDK 라이브러리 가져오기
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // Firebase 설정
-    const firebaseConfig = {
-        apiKey: "AIzaSyAWXz7ovgnjee_RrUvg8lRmVzpcZwdiGlQ",
-        authDomain: "sparta-255c7.firebaseapp.com",
-        projectId: "sparta-255c7",
-        storageBucket: "sparta-255c7.firebasestorage.app",
-        messagingSenderId: "474190313252",
-        appId: "1:474190313252:web:57c867b5fdc42c09d0e5b1",
-        measurementId: "G-P2M5HNY85R"
-    };
+        // Firebase 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+            authDomain: "sprta-f3322.firebaseapp.com",
+            projectId: "sprta-f3322",
+            storageBucket: "sprta-f3322.firebasestorage.app",
+            messagingSenderId: "56818984443",
+            appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+            measurementId: "G-WZLQRD938T"
+        };
 
-    // Firebase 인스턴스 초기화
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-    // 회원가입 기능
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        // 회원가입 기능
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-    document.getElementById('signUpButton').addEventListener('click', (event) => {  // 클릭했을 때 함수 실행
-        event.preventDefault();
+        document.getElementById('signUpButton').addEventListener('click', (event) => {  // 클릭했을 때 함수 실행
+            event.preventDefault();
 
-        const email = document.getElementById('signUpEmail').value;
-        const password = document.getElementById('signUpPassword').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
 
-        const auth = getAuth();  // auth라는 변수를 만들어서 getAuth() 함수 실행
-        createUserWithEmailAndPassword(auth, email, password)  // User를 만들어주겠다는 함수
-            .then((userCredential) => {
-                console.log(userCredential);
-                // 회원가입 성공 시
-                alert('회원가입되셨습니다!');
-                window.location.href = "login.html"; // login.html로 이동
-            })
-            .catch((error) => {
-                console.log('error');
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert(`회원가입에 실패했습니다: ${errorMessage}`); // 에러 메시지 표시
-            });
-    });
-    // 회원가입 기능
+            const auth = getAuth();  // auth라는 변수를 만들어서 getAuth() 함수 실행
+            createUserWithEmailAndPassword(auth, email, password)  // User를 만들어주겠다는 함수
+                .then((userCredential) => {
+                    console.log(userCredential);
+                    // 회원가입 성공 시
+                    alert('회원가입되셨습니다!');
+                    window.location.href = "login.html"; // login.html로 이동
+                })
+                .catch((error) => {
+                    console.log('error');
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(`회원가입에 실패했습니다: ${errorMessage}`); // 에러 메시지 표시
+                });
+        });
+        // 회원가입 기능
 
-    // 시간 불러오는 기능
-    function updateTime() {
-        const timeElement = document.getElementById("time");
-        const now = new Date(); // 현재 시간을 가져옵니다.
+        // 시간 불러오는 기능
+        function updateTime() {
+            const timeElement = document.getElementById("time");
+            const now = new Date(); // 현재 시간을 가져옵니다.
 
-        // 시간을 형식에 맞게 가져오기
-        const hours = String(now.getHours()).padStart(2, "0"); // 시
-        const minutes = String(now.getMinutes()).padStart(2, "0"); // 분
-        const seconds = String(now.getSeconds()).padStart(2, "0"); // 초
+            // 시간을 형식에 맞게 가져오기
+            const hours = String(now.getHours()).padStart(2, "0"); // 시
+            const minutes = String(now.getMinutes()).padStart(2, "0"); // 분
+            const seconds = String(now.getSeconds()).padStart(2, "0"); // 초
 
-        // 시간을 문자열로 조합
-        timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-    }
+            // 시간을 문자열로 조합
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
 
-    // 1초마다 시간을 업데이트
-    setInterval(updateTime, 1000);
+        // 1초마다 시간을 업데이트
+        setInterval(updateTime, 1000);
 
-    // 페이지가 로드될 때 즉시 시간을 표시하기 위해 초기 호출
-    updateTime();
-</script>
+        // 페이지가 로드될 때 즉시 시간을 표시하기 위해 초기 호출
+        updateTime();
+    </script>
 
 </head>
 
@@ -191,7 +191,7 @@
         <h2>회원가입</h2>
         <div class="email">
             <label for="signUpEmail">Email</label>
-            <input type="email" id="signUpEmail" placeholder="example@email.com"/>
+            <input type="email" id="signUpEmail" placeholder="example@email.com" />
         </div>
         <div class="email">
             <label for="signUpEmail">Password</label>
@@ -201,8 +201,8 @@
             <a href="login.html" class="link">로그인하러 가기</a>
             <button class="joinbtn" type="submit" id="signUpButton">회원가입하기</button>
         </div>
-         
-        
+
+
     </form>
 
 </body>
