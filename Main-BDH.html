@@ -89,6 +89,21 @@
             align-items: center;
         }
 
+        .contactBody {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40%;
+            text-align: center;
+        }
+
+        .card-body {
+            max-height: 100%;
+            overflow: hidden;
+            padding: 1vh;
+            box-sizing: border-box;
+        }
+
         .contact-text {
             margin-top: 1vh;
             text-align: center;
@@ -102,8 +117,26 @@
             margin-bottom: 1vh;
         }
 
+        .contactButtons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+        }
+
+        .content-button1 img {
+            width: 100%;
+            /* 버튼에 맞춰 이미지 크기 조정 */
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            /* 버튼을 둥글게 설정하려면 사용 */
+        }
+
         .FirstBox {
-            background-color: lightpink;
+            background-image: url('https://medibangpaint.com/wp-content/uploads/2021/08/7-1.jpg');
             display: flex;
             justify-content: center;
             align-items: center;
@@ -125,7 +158,7 @@
         }
 
         .SecondBox {
-            background-color: lightpink;
+            background-image: url('https://medibangpaint.com/wp-content/uploads/2021/08/7-1.jpg');
             display: block;
             width: 100%;
             height: 95vh;
@@ -248,7 +281,7 @@
 
         .ThirdBox {
             position: relative;
-            background-color: lightpink;
+            background-image: url('https://medibangpaint.com/wp-content/uploads/2021/08/7-1.jpg');
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -336,7 +369,7 @@
         }
 
         .ForthBox {
-            background-color: lightpink;
+            background-image: url('https://medibangpaint.com/wp-content/uploads/2021/08/7-1.jpg');
             display: block;
             width: 100%;
             height: 95vh;
@@ -631,9 +664,12 @@
 
         <div class="LowerBox">
             <div class="firstIntroBox">
-                <div class="firstIntro"> 넣어는 놨지만 사실 뭘 적을지도 모르겠고. 그런 김에 대충 인생얘기나 하자면, 이과 >> 경영학과 >> 영/수 교사 >> 개발자의 길을 걷고 있는 잡탕인생 방동혁입니다.<br>
-                    학원 다니다가, 벌이는 나쁘지 않은데 뭔가 생활 패턴이 참 아쉽다 싶어서 학원 때려치고 나왔습니다!!! 물론 안되겠다 싶으면 다시 돌아갈 수도 있겠지만은.... 학원에선 나름 에이스였으니까 받아주지 않을까...하고 있습니다...<br>
-                    그래도! 지금까지 해본 바로는 개발 나름 재밌어서 잘 해보자는 마음이 매우 큽니다! 근데 이번 프론트엔드 맛보기 과제는 너무너무 힘이들었어요... 낙오되지 않게 멱살캐리해준 우리 팀원들 아주아주 감사합니다 ㅎㅎㅎ
+                <div class="firstIntro"> 넣어는 놨지만 사실 뭘 적을지도 모르겠고. 그런 김에 대충 인생얘기나 하자면, 이과 >> 경영학과 >> 영/수 교사 >> 개발자의 길을 걷고
+                    있는 잡탕인생 방동혁입니다.<br>
+                    학원 다니다가, 벌이는 나쁘지 않은데 뭔가 생활 패턴이 참 아쉽다 싶어서 학원 때려치고 나왔습니다!!! 물론 안되겠다 싶으면 다시 돌아갈 수도 있겠지만은.... 학원에선 나름
+                    에이스였으니까 받아주지 않을까...하고 있습니다...<br>
+                    그래도! 지금까지 해본 바로는 개발 나름 재밌어서 잘 해보자는 마음이 매우 큽니다! 근데 이번 프론트엔드 맛보기 과제는 너무너무 힘이들었어요... 낙오되지 않게 멱살캐리해준 우리
+                    팀원들 아주아주 감사합니다 ㅎㅎㅎ
                 </div>
             </div>
         </div>
@@ -717,17 +753,24 @@
     <div class="box contact-box">
         <div class="content" style="width: 18rem;">
             <div class="card-body">
-                <p class="content-text">Contact Me</p>
+                <div class="contactBody">
+                    <p class="content-text">Contact Me</p>
+                </div>
                 <div class="contactButtons">
-                    <button>
-                        <a class="content-button1" role="button" aria-disabled="true">Link</a>
-                    </button>
-                    <button>
-                        <a class="content-button2" role="button" aria-disabled="true">Link</a>
-                    </button>
-                    <button>
-                        <a class="content-button3" role="button" aria-disabled="true">Link</a>
-                    </button>
+                    <a class="content-button1" role="button" aria-disabled="true"
+                        href="https://velog.io/@qkdehdgur3/posts">
+                        <img src="https://velog.velcdn.com/images/hyeongjun/post/5fff0129-f29b-4dfa-b28b-f3af0e11ed4f/image.png"
+                            alt="Velog">
+                    </a>
+                    <a class="content-button2" role="button" aria-disabled="true"
+                        href="https://www.instagram.com/happy_beny/">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                            alt="Instagram">
+                    </a>
+                    <a class="content-button3" role="button" aria-disabled="true" href="https://github.com/HappyBeny">
+                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                            alt="GitHub">
+                    </a>
                 </div>
             </div>
         </div>
