@@ -15,6 +15,33 @@
             height: auto;
         }
 
+        /* 이동 상자 */
+        .fixed-navigation {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .nav-button img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 이동 상자 */
+
         .sideBox {
             background-color: white;
             width: 20vh;
@@ -98,75 +125,80 @@
         }
 
         /* 12 */
-.btn-12{
-  position: relative;
-  right: 20px;
-  bottom: 20px;
-  border:none;
-  box-shadow: none;
-  width: 130px;
-  height: 40px;
-  line-height: 42px;
-  -webkit-perspective: 230px;
-  perspective: 230px;
-}
-.btn-12 span {
-  background: rgb(0,172,238);
-background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
-  display: block;
-  position: absolute;
-  width: 130px;
-  height: 40px;
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-   7px 7px 20px 0px rgba(0,0,0,.1),
-   4px 4px 5px 0px rgba(0,0,0,.1);
-  border-radius: 5px;
-  margin:0;
-  text-align: center;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-.btn-12 span:nth-child(1) {
-  box-shadow:
-   -7px -7px 20px 0px #fff9,
-   -4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
-  -webkit-transform: rotateX(90deg);
-  -moz-transform: rotateX(90deg);
-  transform: rotateX(90deg);
-  -webkit-transform-origin: 50% 50% -20px;
-  -moz-transform-origin: 50% 50% -20px;
-  transform-origin: 50% 50% -20px;
-}
-.btn-12 span:nth-child(2) {
-  -webkit-transform: rotateX(0deg);
-  -moz-transform: rotateX(0deg);
-  transform: rotateX(0deg);
-  -webkit-transform-origin: 50% 50% -20px;
-  -moz-transform-origin: 50% 50% -20px;
-  transform-origin: 50% 50% -20px;
-}
-.btn-12:hover span:nth-child(1) {
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-   7px 7px 20px 0px rgba(0,0,0,.1),
-   4px 4px 5px 0px rgba(0,0,0,.1);
-  -webkit-transform: rotateX(0deg);
-  -moz-transform: rotateX(0deg);
-  transform: rotateX(0deg);
-}
-.btn-12:hover span:nth-child(2) {
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-   7px 7px 20px 0px rgba(0,0,0,.1),
-   4px 4px 5px 0px rgba(0,0,0,.1);
- color: transparent;
-  -webkit-transform: rotateX(-90deg);
-  -moz-transform: rotateX(-90deg);
-  transform: rotateX(-90deg);
-}
+        .btn-12 {
+            position: relative;
+            right: 20px;
+            bottom: 20px;
+            border: none;
+            box-shadow: none;
+            width: 130px;
+            height: 40px;
+            line-height: 42px;
+            -webkit-perspective: 230px;
+            perspective: 230px;
+        }
+
+        .btn-12 span {
+            background: rgb(0, 172, 238);
+            background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+            display: block;
+            position: absolute;
+            width: 130px;
+            height: 40px;
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+                7px 7px 20px 0px rgba(0, 0, 0, .1),
+                4px 4px 5px 0px rgba(0, 0, 0, .1);
+            border-radius: 5px;
+            margin: 0;
+            text-align: center;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+
+        .btn-12 span:nth-child(1) {
+            box-shadow:
+                -7px -7px 20px 0px #fff9,
+                -4px -4px 5px 0px #fff9,
+                7px 7px 20px 0px #0002,
+                4px 4px 5px 0px #0001;
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+            -webkit-transform-origin: 50% 50% -20px;
+            -moz-transform-origin: 50% 50% -20px;
+            transform-origin: 50% 50% -20px;
+        }
+
+        .btn-12 span:nth-child(2) {
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+            -webkit-transform-origin: 50% 50% -20px;
+            -moz-transform-origin: 50% 50% -20px;
+            transform-origin: 50% 50% -20px;
+        }
+
+        .btn-12:hover span:nth-child(1) {
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+                7px 7px 20px 0px rgba(0, 0, 0, .1),
+                4px 4px 5px 0px rgba(0, 0, 0, .1);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+        }
+
+        .btn-12:hover span:nth-child(2) {
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+                7px 7px 20px 0px rgba(0, 0, 0, .1),
+                4px 4px 5px 0px rgba(0, 0, 0, .1);
+            color: transparent;
+            -webkit-transform: rotateX(-90deg);
+            -moz-transform: rotateX(-90deg);
+            transform: rotateX(-90deg);
+        }
 
         .FirstBox {
             background-image: url('https://images.unsplash.com/photo-1730322477867-a57b0e0ffad8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDQxfEpwZzZLaWRsLUhrfHxlbnwwfHx8fHw%3D');
@@ -630,6 +662,27 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
 
 <body class="MainBody">
 
+    <!-- 이동 버튼 -->
+    <div class="fixed-navigation">
+        <button class="nav-button" onclick="scrollToPosition('top')">
+            <img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/6657200598/B.png?334000000"
+                alt="Top Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('SecondBox')">
+            <img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/6657200598/B.png?334000000"
+                alt="Second Box Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('ThirdBox')">
+            <img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/6657200598/B.png?334000000"
+                alt="Third Box Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('ForthBox')">
+            <img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/6657200598/B.png?334000000"
+                alt="Forth Box Button">
+        </button>
+    </div>
+    <!-- 이동 버튼 -->
+
     <div class="sideBox">
         <h1 class="voteText">팥붕 VS 슈붕</h1>
         <div class="graph">
@@ -659,134 +712,153 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
 
     <div class="FirstBox">
         <div class="Firstgreeting">
-            Welcome everyone >.<
-        </div>
-    </div>
-
-    <div class="SecondBox">
-
-        <div class="UpperBox">
-            <div class="firstPic">
-
-            </div>
-
-            <div class="container">
-                <h1 class="myInfo">나의 정보</h1>
-                <div class="info-box">
-                    <div class="minInfoBoxes">
-                        <div class="info-item">이름: 박재성</div>
-                    </div>
-                    <div class="minInfoBoxes">
-                        <div class="info-item">MBTI: INFP</div>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <div class="minInfoBoxes">
-                        <div class="info-item">혈액형: B형</div>
-                    </div>
-                    <div class="minInfoBoxes">
-                        <div class="info-item">나이 : 25살</div>
-                    </div>
-                </div>
-
-                <div class="greetingBox">
-                    <p class="greeting">누워서 숨 쉬는걸 가장 좋아하는 사람입니다. 말 걸어주시면 도망가지 않고 대답하도록 노력해보겠습니다!🐛</p>
-                </div>
-            </div>
+            Welcome everyone >.< </div>
         </div>
 
-        <div class="LowerBox">
-            <div class="firstIntroBox">
-                <div class="firstIntro">비전공자로 최근에 웹개발을 시작한 PJS임니다. 부트캠프를 시작하기 전에 Udemy에서 The Web Developer 2024 과정을 절반 들었습니다. 프론트엔드와 백엔드가 모두 들어있는 과정인데, 아직 프론트엔드밖에 못들어서 백엔드에 관해서는 잘 모릅니다. 하지만 둘 다 잘하는 풀스택 개발자를 최종 목표로 열심히 달려가겠습니다.</div>
-            </div>
-        </div>
-    </div>
+        <div class="SecondBox">
 
-    <div class="ThirdBox">
-        <h1 class="title">My hobbies</h1>
-
-        <div class="scattered-images">
-            <div class="card">
-                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%82%98%EC%9D%98%20%EB%8F%88%EC%9D%80%20%EB%B0%B0%EB%A1%9C%20%EA%B0%84%EB%8B%A4..jpg?raw=true"
-                    alt="중앙 이미지">
-            </div>
-            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%85%B8%ED%8A%B8%EB%B6%81,%20%EC%B1%85,%20%EC%B9%B4%ED%8E%98.jpeg?raw=true" alt="이미지 1"
-                class="card1">
-            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%9D%BC%EB%96%BC%EC%95%84%ED%8A%B8,%20%EC%B1%85.jpeg?raw=true"
-                alt="이미지 2" class="card2">
-            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%ED%97%AC%EC%8A%A4.jpeg?raw=true"
-                alt="이미지 3" class="card3">
-            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/Environmental%20Engineering.jpeg?raw=true"
-                alt="이미지 4" class="card4">
-        </div>
-    </div>
-
-    <div class="ForthBox">
-        <h1 class="PNF">Past & Future</h1>
-        <div class="container2">
-            <div class="sidebar">
-                <div class="section">
-                    <div class="firstForth">
-                        <h2>Past</h2>
-                    </div>
-
-                    <div class="SecondForth">
-                        <div class="box">
-                            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EC%B1%85.jpeg?raw=true"
-                                alt="Past Image 1">
-                            <div class="description">I like reading a book.</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%B0%B0%EB%93%9C%EB%AF%BC%ED%84%B4.jpeg?raw=true"
-                                alt="Past Image 2">
-                            <div class="description">I played badminton much in middle and high school.</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%B0%B0%EA%B7%B8.jpeg?raw=true"
-                                alt="Past Image 3">
-                            <div class="description">I like playing a game. This is my best game.</div>
-                        </div>
-                    </div>
+            <div class="UpperBox">
+                <div class="firstPic">
 
                 </div>
 
-                <div class="section">
-                    <div class="ThirdForth">
-                        <h2>Future</h2>
-                    </div>
-
-                    <div class="ForthForth">
-                        <div class="box">
-                            <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif" alt="Future Image 1">
-                            <div class="description">I wanna be a good developer.</div>
+                <div class="container">
+                    <h1 class="myInfo">나의 정보</h1>
+                    <div class="info-box">
+                        <div class="minInfoBoxes">
+                            <div class="info-item">이름: 박재성</div>
                         </div>
-                        <div class="box">
-                            <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg"
-                                alt="Future Image 2">
-                            <div class="description">I want to get married and live a comfortable life.</div>
-                        </div>
-                        <div class="box">
-                            <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%85%B8%ED%8A%B8%EB%B6%81,%20%EC%B1%85,%20%EC%B9%B4%ED%8E%98.jpeg?raw=true"
-                                alt="Future Image 3">
-                            <div class="description">I wanna enjoy coding, coffee, reading a book in cafe.</div>
+                        <div class="minInfoBoxes">
+                            <div class="info-item">MBTI: INFP</div>
                         </div>
                     </div>
 
+                    <div class="info-box">
+                        <div class="minInfoBoxes">
+                            <div class="info-item">혈액형: B형</div>
+                        </div>
+                        <div class="minInfoBoxes">
+                            <div class="info-item">나이 : 25살</div>
+                        </div>
+                    </div>
+
+                    <div class="greetingBox">
+                        <p class="greeting">누워서 숨 쉬는걸 가장 좋아하는 사람입니다. 말 걸어주시면 도망가지 않고 대답하도록 노력해보겠습니다!🐛</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="LowerBox">
+                <div class="firstIntroBox">
+                    <div class="firstIntro">비전공자로 최근에 웹개발을 시작한 PJS임니다. 부트캠프를 시작하기 전에 Udemy에서 The Web Developer 2024 과정을
+                        절반 들었습니다. 프론트엔드와 백엔드가 모두 들어있는 과정인데, 아직 프론트엔드밖에 못들어서 백엔드에 관해서는 잘 모릅니다. 하지만 둘 다 잘하는 풀스택 개발자를 최종
+                        목표로 열심히 달려가겠습니다.</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="contact-box">
-        <div class="content" style="width: 18rem;">
+        <div class="ThirdBox">
+            <h1 class="title">My hobbies</h1>
+
+            <div class="scattered-images">
+                <div class="card">
+                    <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%82%98%EC%9D%98%20%EB%8F%88%EC%9D%80%20%EB%B0%B0%EB%A1%9C%20%EA%B0%84%EB%8B%A4..jpg?raw=true"
+                        alt="중앙 이미지">
+                </div>
+                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%85%B8%ED%8A%B8%EB%B6%81,%20%EC%B1%85,%20%EC%B9%B4%ED%8E%98.jpeg?raw=true"
+                    alt="이미지 1" class="card1">
+                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%9D%BC%EB%96%BC%EC%95%84%ED%8A%B8,%20%EC%B1%85.jpeg?raw=true"
+                    alt="이미지 2" class="card2">
+                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%ED%97%AC%EC%8A%A4.jpeg?raw=true"
+                    alt="이미지 3" class="card3">
+                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/Environmental%20Engineering.jpeg?raw=true"
+                    alt="이미지 4" class="card4">
+            </div>
+        </div>
+
+        <div class="ForthBox">
+            <h1 class="PNF">Past & Future</h1>
+            <div class="container2">
+                <div class="sidebar">
+                    <div class="section">
+                        <div class="firstForth">
+                            <h2>Past</h2>
+                        </div>
+
+                        <div class="SecondForth">
+                            <div class="box">
+                                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EC%B1%85.jpeg?raw=true"
+                                    alt="Past Image 1">
+                                <div class="description">I like reading a book.</div>
+                            </div>
+                            <div class="box">
+                                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%B0%B0%EB%93%9C%EB%AF%BC%ED%84%B4.jpeg?raw=true"
+                                    alt="Past Image 2">
+                                <div class="description">I played badminton much in middle and high school.</div>
+                            </div>
+                            <div class="box">
+                                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%B0%B0%EA%B7%B8.jpeg?raw=true"
+                                    alt="Past Image 3">
+                                <div class="description">I like playing a game. This is my best game.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="section">
+                        <div class="ThirdForth">
+                            <h2>Future</h2>
+                        </div>
+
+                        <div class="ForthForth">
+                            <div class="box">
+                                <img src="https://ilovegangwon.com/data/file/humor/15827113263118.gif"
+                                    alt="Future Image 1">
+                                <div class="description">I wanna be a good developer.</div>
+                            </div>
+                            <div class="box">
+                                <img src="https://blog.kakaocdn.net/dn/0dU9E/btrxoHHLcGA/Z3egdaVMXOX40DaYttbO1k/img.jpg"
+                                    alt="Future Image 2">
+                                <div class="description">I want to get married and live a comfortable life.</div>
+                            </div>
+                            <div class="box">
+                                <img src="https://github.com/Lustella-123/Lustella-123/blob/main/%EB%85%B8%ED%8A%B8%EB%B6%81,%20%EC%B1%85,%20%EC%B9%B4%ED%8E%98.jpeg?raw=true"
+                                    alt="Future Image 3">
+                                <div class="description">I wanna enjoy coding, coffee, reading a book in cafe.</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <div class="content" style="width: 18rem;">
                 <div class="contactButtons">
-                    <button class="custom-btn btn-12" style="background-color: transparent;"><span><a href="https://forstella.tistory.com/" style="color:black;text-decoration-line: none;">Click!</span></a><span>Blog</span></button>
-                    <button class="custom-btn btn-12" style="background-color: transparent;""><span><a href="https://github.com/Lustella-123" style="color:black;text-decoration-line: none;">Click!</span></a><span>Github</span></button>
-        </div>
-    </div>
+                    <button class="custom-btn btn-12" style="background-color: transparent;"><span><a
+                                href="https://forstella.tistory.com/"
+                                style="color:black;text-decoration-line: none;">Click!</span></a><span>Blog</span></button>
+                    <button class="custom-btn btn-12" style="background-color: transparent;""><span><a href="
+                        https://github.com/Lustella-123"
+                        style="color:black;text-decoration-line: none;">Click!</span></a><span>Github</span></button>
+                </div>
+            </div>
 
-
+            <!-- 이동버튼 스크립트 -->
+            <script>
+                function scrollToPosition(targetId) {
+                    if (targetId === 'top') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const targetElement = document.getElementsByClassName(targetId)[0];
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                }
+            </script>
+            <!-- 이동버튼 스크립트 -->
 </body>
 
 </html>
