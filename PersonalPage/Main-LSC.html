@@ -18,6 +18,32 @@
             height: auto;
         }
 
+        /* 이동 상자 */
+        .fixed-navigation {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .nav-button img {
+            width: 100%;
+            height: 100%;
+        }
+        /* 이동 상자 */
+
         .sideBox {
             background-color: white;
             width: 20vh;
@@ -129,7 +155,7 @@
             font-size: 50px;
             font-weight: bold;
 
-            padding : 50px;
+            padding: 50px;
         }
 
         .SecondBox {
@@ -569,6 +595,27 @@
 
 <body class="MainBody">
 
+    <!-- 이동 버튼 -->
+    <div class="fixed-navigation">
+        <button class="nav-button" onclick="scrollToPosition('top')">
+            <img src="https://item.kakaocdn.net/do/aa2a6a2791f86d061f73829f00a1641126397d82c8691bdabf557d1536959d9c"
+                alt="Top Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('SecondBox')">
+            <img src="https://item.kakaocdn.net/do/aa2a6a2791f86d061f73829f00a1641126397d82c8691bdabf557d1536959d9c"
+                alt="Second Box Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('ThirdBox')">
+            <img src="https://item.kakaocdn.net/do/aa2a6a2791f86d061f73829f00a1641126397d82c8691bdabf557d1536959d9c"
+                alt="Third Box Button">
+        </button>
+        <button class="nav-button" onclick="scrollToPosition('ForthBox')">
+            <img src="https://item.kakaocdn.net/do/aa2a6a2791f86d061f73829f00a1641126397d82c8691bdabf557d1536959d9c"
+                alt="Forth Box Button">
+        </button>
+    </div>
+    <!-- 이동 버튼 -->
+
     <div class="sideBox">
         <h1 class="voteText">팥붕 VS 슈붕</h1>
         <div class="graph">
@@ -630,7 +677,8 @@
                 </div>
 
                 <div class="greetingBox">
-                    <p class="greeting">낯가리는 성격이지만 사람들과 같이 지내는 걸 좋아합니다! 먼저 다가와주시면 도망가지 않고 어울릴 수 있습니다! 캠프 진행하는 동안 다들 잘 지내봐요 ㅎㅎ 잘
+                    <p class="greeting">낯가리는 성격이지만 사람들과 같이 지내는 걸 좋아합니다! 먼저 다가와주시면 도망가지 않고 어울릴 수 있습니다! 캠프 진행하는 동안 다들 잘
+                        지내봐요 ㅎㅎ 잘
                         부탁드립니다~!!</p>
                 </div>
             </div>
@@ -654,8 +702,8 @@
                 <img src="https://item.kakaocdn.net/do/59e8ba8bb70984483fba1a20f27cf02fce9463e040a07a9462a54df43e1d73f1"
                     alt="중앙 이미지">
             </div>
-            <img src="https://static.news.zumst.com/images/27/2020/08/19/b86abff880974379b8ff1517cb9ab1cf.jpg" alt="이미지 1"
-                class="card1">
+            <img src="https://static.news.zumst.com/images/27/2020/08/19/b86abff880974379b8ff1517cb9ab1cf.jpg"
+                alt="이미지 1" class="card1">
             <img src="https://item.kakaocdn.net/do/2bb402963b0c015f0599d54700bd3461f43ad912ad8dd55b04db6a64cddaf76d"
                 alt="이미지 2" class="card2">
             <img src="https://photo.coolenjoy.co.kr/data/editor/2204/thumb-0a8302e34b2cea32a7d26d3b914ad897d1bf882a.png"
@@ -686,8 +734,7 @@
                             <div class="description">친구들과 같이 열심히 게임했습니다.</div>
                         </div>
                         <div class="box">
-                            <img src="https://cdn.telltrip.com/news/photo/202406/1801_9885_494.jpg"
-                                alt="Past Image 3">
+                            <img src="https://cdn.telltrip.com/news/photo/202406/1801_9885_494.jpg" alt="Past Image 3">
                             <div class="description">친구들과 국내 이곳저곳 여행을 다녔습니다.</div>
                         </div>
                     </div>
@@ -727,20 +774,36 @@
                 <p class="content-text" style="text-align: center;">더 많은 정보는~</p>
                 <div class="contactButtons">
                     <button>
-                        <a href ="https://carrot0911.tistory.com/" class="content-button1" role="button" aria-disabled="true">Blog</a>
+                        <a href="https://carrot0911.tistory.com/" class="content-button1" role="button"
+                            aria-disabled="true">Blog</a>
                     </button>
                     <button>
-                        <a href="https://github.com/tmdcksdl" class="content-button2" role="button" aria-disabled="true">Github</a>
+                        <a href="https://github.com/tmdcksdl" class="content-button2" role="button"
+                            aria-disabled="true">Github</a>
                     </button>
                     <button>
-                        <a href="https://www.instagram.com/chan_09_11/" class="content-button3" role="button" aria-disabled="true">Insta</a>
+                        <a href="https://www.instagram.com/chan_09_11/" class="content-button3" role="button"
+                            aria-disabled="true">Insta</a>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <!-- 이동버튼 스크립트 -->
+    <script>
+        function scrollToPosition(targetId) {
+            if (targetId === 'top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const targetElement = document.getElementsByClassName(targetId)[0];
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+    </script>
+    <!-- 이동버튼 스크립트 -->
 </body>
 
 </html>
