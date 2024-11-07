@@ -761,31 +761,24 @@ const firebaseConfig = {
         document.addEventListener("DOMContentLoaded", function() {
             // 스크롤 시 버튼 표시
         window.onscroll = function () {
-    const topButton = document.getElementById("topButton");
-    const ruy = document.getElementById("ruy");
+            const topButton = document.getElementById("topButton");
+            const ruy = document.getElementById("ruy");
 
-    // 첫 번째 조건: 스크롤 위치가 100 이상일 때 topButton 표시
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        topButton.style.display = "block";
-    } else {
-        topButton.style.display = "none";
+            // 첫 번째 조건: 스크롤 위치가 100 이상일 때 topButton 표시
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
     }
 
-    // 두 번째 조건: 스크롤 위치가 700 이상일 때 ruy 표시
-    if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
-        ruy.style.display = "block";
-    } else {
-        ruy.style.display = "none";
-    }
-            };
-            // 버튼 클릭 시 맨 위로 이동
-            document.getElementById("topButton").onclick = function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            };
-        });
+        // 두 번째 조건: 스크롤 위치가 700 이상 1300 이하일 때만 ruy 표시
+        if ((document.body.scrollTop > 700 && document.body.scrollTop <= 1300) || 
+            (document.documentElement.scrollTop > 700 && document.documentElement.scrollTop <= 1300)) {
+            ruy.style.display = "block";
+          } else {
+            ruy.style.display = "none";
+        }
+};
     </script>
 
     <button id="topButton">Top <br>▲</button>
