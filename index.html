@@ -117,6 +117,14 @@
             color: white;
         }
 
+        #loginStatusIcon {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 5px;
+        vertical-align: middle; /* 아이콘을 텍스트와 수직 정렬 */
+    }
         /* 네비게이션바 */
 
         /* 팀소개 */
@@ -267,120 +275,110 @@
         /* 맨 위로 가기 버튼 */
     </style>
 
+// Firebase 설정
+const firebaseConfig = {
+    apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+    authDomain: "sprta-f3322.firebaseapp.com",
+    projectId: "sprta-f3322",
+    storageBucket: "sprta-f3322.firebasestorage.app",
+    messagingSenderId: "56818984443",
+    appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+    measurementId: "G-WZLQRD938T"
+};
     <script type="module">
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-        // Firebase 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
-            authDomain: "sprta-f3322.firebaseapp.com",
-            projectId: "sprta-f3322",
-            storageBucket: "sprta-f3322.firebasestorage.app",
-            messagingSenderId: "56818984443",
-            appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
-            measurementId: "G-WZLQRD938T"
-        };
+// Firebase 설정
+const firebaseConfig = {
+    apiKey: "AIzaSyAtHlJLsyoZ4__m1-eXMaBBvpJNeJD74js",
+    authDomain: "sprta-f3322.firebaseapp.com",
+    projectId: "sprta-f3322",
+    storageBucket: "sprta-f3322.firebasestorage.app",
+    messagingSenderId: "56818984443",
+    appId: "1:56818984443:web:fc1b3289fa5e6e969a575e",
+    measurementId: "G-WZLQRD938T"
+};
 
-        // Firebase 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
 
-        // 방명록 저장 기능
-        $(document).on("click", "#guestbookbtn", async function () {
-            let name = $('#exampleFormControlInput1').val();
-            let content = $('#exampleFormControlTextarea1').val();
+    // 로그인 상태에 따른 버튼 및 아이콘 설정
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginButton = document.getElementById("goLogin");
+        const loginIcon = document.createElement("span");
 
-            if (name && content) {
-                let docData = {
-                    'name': name,
-                    'content': content
+        loginIcon.id = "loginStatusIcon";
+        loginIcon.style.width = "10px";
+        loginIcon.style.height = "10px";
+        loginIcon.style.borderRadius = "50%";
+        loginIcon.style.marginLeft = "5px";
+        loginIcon.style.display = "inline-block";
+        loginIcon.style.verticalAlign = "middle";
+        loginButton.appendChild(loginIcon);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginButton.textContent = "로그아웃"; // 로그인 상태일 때 버튼 텍스트 변경
+                loginButton.appendChild(loginIcon);
+                loginIcon.style.backgroundColor = "green"; // 로그인 상태 - 초록색 아이콘
+
+                // 로그아웃 기능 추가
+                loginButton.onclick = () => {
+                    signOut(auth)
+                        .then(() => {
+                            alert("로그아웃되었습니다.");
+                            window.location.reload(); // 페이지 새로고침하여 상태 업데이트
+                        })
+                        .catch((error) => {
+                            console.error("로그아웃 중 오류가 발생했습니다: ", error);
+                        });
                 };
-                try {
-                    await addDoc(collection(db, "guestbook"), docData);
-                    alert('방명록이 저장되었습니다!');
-                    window.location.reload();
-                } catch (error) {
-                    console.error("방명록 저장 중 오류가 발생했습니다: ", error);
-                }
             } else {
-                alert('이름과 내용을 모두 입력해주세요.');
+                loginButton.textContent = "로그인하기"; // 비로그인 상태일 때 버튼 텍스트 변경
+                loginButton.appendChild(loginIcon);
+                loginIcon.style.backgroundColor = "red"; // 비로그인 상태 - 빨간색 아이콘
+
+                // 로그인 페이지로 이동
+                loginButton.onclick = () => {
+                    window.location.href = "login.html";
+                };
             }
         });
+    });
 
-        // 방명록 가져오기 및 카드로 표시
-        async function loadGuestbook() {
-            try {
-                $('#card').empty();  // 기존 데이터를 초기화하여 중복 방지
-                let docs = await getDocs(collection(db, "guestbook"));
-                docs.forEach((doc) => {
-                    let row = doc.data();
-                    let id = doc.id;
-                    let name = row['name'];
-                    let content = row['content'];
+    // 방명록 저장하기 클릭 이벤트
+    $(document).on("click", "#guestbookbtn", async function () {
+        const user = auth.currentUser; // 현재 로그인 상태 확인
 
-                    let temp_html = `
-                    <div class="guestbookcard" id="guestbook-${id}">
-                        <div class="card-body">
-                            <h3>${name}</h3>
-                            <p>${content}</p>
-                            <button type="button" class="btn btn-outline-primary edit-btn" data-id="${id}">수정</button>
-                            <button type="button" class="btn btn-outline-danger delete-btn" data-id="${id}">삭제</button>
-                        </div>
-                    </div>`;
-
-                    $('#card').append(temp_html);
-                });
-            } catch (error) {
-                console.error("방명록을 가져오는 중 오류가 발생했습니다: ", error);
-            }
+        if (!user) {
+            alert("로그인이 필요합니다."); // 비로그인 상태일 경우 알림 표시
+            return;
         }
 
-        // 페이지 로드 시 방명록 가져오기
-        $(document).ready(function () {
-            loadGuestbook();
-        });
+        // 로그인 상태일 때 방명록 저장
+        let name = $('#exampleFormControlInput1').val();
+        let content = $('#exampleFormControlTextarea1').val();
 
-        // 방명록 삭제 기능
-        $(document).on("click", ".delete-btn", async function () {
-            let id = $(this).data("id");
+        if (name && content) {
+            let docData = {
+                'name': name,
+                'content': content
+            };
             try {
-                await deleteDoc(doc(db, "guestbook", id));
-                alert('방명록이 삭제되었습니다.');
-                $(`#guestbook-${id}`).remove();
+                await addDoc(collection(db, "guestbook"), docData);
+                alert('방명록이 저장되었습니다!');
+                window.location.reload();
             } catch (error) {
-                console.error("방명록 삭제 중 오류가 발생했습니다: ", error);
+                console.error("방명록 저장 중 오류가 발생했습니다: ", error);
             }
-        });
+        } else {
+            alert('이름과 내용을 모두 입력해주세요.');
+        }
+    });
 
-        // 방명록 수정 기능
-        $(document).on("click", ".edit-btn", async function () {
-            let id = $(this).data("id");
-            let docRef = doc(db, "guestbook", id);
-            try {
-                let docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    let row = docSnap.data();
-                    let currentName = row['name'];
-                    let currentContent = row['content'];
-                    let newName = prompt("이름을 수정하세요:", currentName);
-                    let newContent = prompt("내용을 수정하세요:", currentContent);
-                    if (newName && newContent) {
-                        await updateDoc(docRef, {
-                            name: newName,
-                            content: newContent
-                        });
-                        alert('방명록이 수정되었습니다.');
-                        loadGuestbook();  // 수정 후 데이터 다시 로드하여 업데이트
-                    }
-                } else {
-                    alert("문서를 찾을 수 없습니다.");
-                }
-            } catch (error) {
-                console.error("방명록 수정 중 오류가 발생했습니다: ", error);
-            }
-        });
 
         // 시간 불러오는 기능
         function updateTime() {
