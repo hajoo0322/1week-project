@@ -598,14 +598,7 @@ const firebaseConfig = {
             window.location.href = "login.html";
         });
 
-        window.onscroll = function () {
-                const ruy = document.getElementById("ruy");
-                if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
-                    ruy.style.display = "block";
-                } else {
-                    ruy.style.display = "none";
-                }
-            };
+
         
     </script>
 </head>
@@ -773,6 +766,14 @@ const firebaseConfig = {
                     topButton.style.display = "block";
                 } else {
                     topButton.style.display = "none";
+                }
+            };
+            window.onscroll = function () {
+                const ruy = document.getElementById("ruy");
+                if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+                    ruy.style.display = "block";
+                } else {
+                    ruy.style.display = "none";
                 }
             };
 
