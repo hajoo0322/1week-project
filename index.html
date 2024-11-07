@@ -276,9 +276,9 @@
         /* 맨 위로 가기 버튼 */
     </style>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
 // Firebase 설정
@@ -347,21 +347,14 @@ const firebaseConfig = {
     async function loadGuestbook(isLoggedIn) {
         try {
             $('#card').empty();  // 기존 데이터를 초기화하여 중복 방지
-
-            // 방명록을 최신순으로 정렬하여 가져오기
-            const guestbookQuery = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
-            let docs = await getDocs(guestbookQuery);
-
-            if (docs.empty) {
-                $('#card').append("<p>방명록이 없습니다.</p>");
-                return;
-            }
-
+            let docs = await getDocs(collection(db, "guestbook"));
             docs.forEach((doc) => {
                 let row = doc.data();
                 let id = doc.id;
-                let name = row['name'] || "익명";
-                let content = row['content'] || "";
+                let name = row['name'];
+                let content = row['content'];
+
+                // isLoggedIn이 false일 경우 수정 및 삭제 버튼을 비활성화
                 let temp_html = `
                 <div class="guestbookcard" id="guestbook-${id}">
                     <div class="card-body">
@@ -376,7 +369,6 @@ const firebaseConfig = {
             });
         } catch (error) {
             console.error("방명록을 가져오는 중 오류가 발생했습니다: ", error);
-            $('#card').append("<p>방명록을 불러오는 중 오류가 발생했습니다.</p>");
         }
     }
 
@@ -396,8 +388,7 @@ const firebaseConfig = {
         if (name && content) {
             let docData = {
                 'name': name,
-                'content': content,
-                'timestamp': new Date() // 현재 시간을 timestamp 필드에 저장
+                'content': content
             };
             try {
                 await addDoc(collection(db, "guestbook"), docData);
