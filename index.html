@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>래프트(FROM GARBAGE)</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
     <style>
@@ -115,6 +116,7 @@
         .SMN_effect-14:focus {
             color: white;
         }
+
         /* 네비게이션바 */
 
         /* 팀소개 */
@@ -135,6 +137,7 @@
             display: flex;
             width: 100%;
         }
+
         /* 팀소개 */
 
         /* 팀내용 */
@@ -178,6 +181,7 @@
             margin-bottom: 0.5rem;
             line-height: 1.6;
         }
+
         /* 팀내용 */
 
         /* 멤버내용 */
@@ -207,6 +211,7 @@
 
             margin: 20px auto 20px auto;
         }
+
         /* 멤버내용 */
 
         /* 방명록 */
@@ -226,6 +231,7 @@
             padding: 20px;
             margin: 20px auto;
         }
+
         /* 방명록 */
 
         /* 날씨위젯 */
@@ -239,7 +245,26 @@
             border-radius: 5px;
             z-index: 1000;
         }
+
         /* 날씨위젯 */
+
+        /* 맨 위로 가기 버튼 */
+        #topButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 12px;
+            padding: 10px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+
+        /* 맨 위로 가기 버튼 */
     </style>
 
     <script type="module">
@@ -441,23 +466,23 @@
             });
         }
         if (localStorage.getItem('userPosition')) {
-    const position = JSON.parse(localStorage.getItem('userPosition'));
-    fetchWeatherData(position.nx, position.ny);
-} else {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
-            const nx = 60;  // 원하는 값으로 대체
-            const ny = 127; // 원하는 값으로 대체
-            localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
-            fetchWeatherData(nx, ny);
-        }, error => {
-            console.error("위치 정보를 가져오는 중 오류 발생: ", error);
-        });
-    } else {
-        console.log("사용자의 위치 정보를 가져올 수 없습니다.");
-    }
-}
+            const position = JSON.parse(localStorage.getItem('userPosition'));
+            fetchWeatherData(position.nx, position.ny);
+        } else {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    const nx = 60;  // 원하는 값으로 대체
+                    const ny = 127; // 원하는 값으로 대체
+                    localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
+                    fetchWeatherData(nx, ny);
+                }, error => {
+                    console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+                });
+            } else {
+                console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+            }
+        }
         // 일기예보
 
         // 네비바이동
@@ -514,12 +539,14 @@
     </nav>
 
     <!-- 파도 이미지 -->
-    <img id="waveImage" class="wave" src="https://github.com/Lustella-123/Lustella-123/blob/main/%ED%8C%8C%EB%8F%84modified.png?raw=true" alt="파도 이미지">
+    <img id="waveImage" class="wave"
+        src="https://github.com/Lustella-123/Lustella-123/blob/main/%ED%8C%8C%EB%8F%84modified.png?raw=true"
+        alt="파도 이미지">
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // 페이지가 로드된 후 1초 후에 파도 이미지가 아래로 내려가는 애니메이션을 실행합니다.
-            setTimeout(function() {
+            setTimeout(function () {
                 $('#waveImage').css('top', '0');
             }, 1000);
         });
@@ -541,7 +568,9 @@
                 레프트라는 팀 이름을 지었습니다.</p>
         </div>
         <div>
-            <img class="raft" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011" alt="Raft_steam">
+            <img class="raft"
+                src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg?t=1727184011"
+                alt="Raft_steam">
         </div>
     </div>
 
@@ -551,7 +580,8 @@
             <p>저희 팀의 목표는 <b>단순히 개발자로서의 지식을 쌓는 것에 그치지 않고, 실제로 활용 가능한 프로젝트를 완성하는 것</b>입니다.<br>
                 그 과정에서 배우고 성장하며, 각자의 장점과 역량을 결합해 협업의 중요성을 깨닫고, 문제 해결 능력을 키워가고 있습니다.<br>
                 비전공자라는 시작점에서 출발했지만, 그만큼 창의적이고 새로운 시각을 가지고 있으며, 끊임없이 발전하는 개발자가 되기 위해 노력하고 있습니다.<br>
-                <b>저희 팀은 앞으로도 개발자의 꿈을 현실로 만들어 가는 여정을 계속하며, 도전과 성취의 순간들을 함께 나누고자 합니다.</b></p>
+                <b>저희 팀은 앞으로도 개발자의 꿈을 현실로 만들어 가는 여정을 계속하며, 도전과 성취의 순간들을 함께 나누고자 합니다.</b>
+            </p>
         </div>
         <div class="팀카드">
             <h2>Ground Rule</h2>
@@ -580,7 +610,8 @@
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <a href="PersonalPage/Card-HSW.html" class="card h-100 text-decoration-none">
-                    <img src="https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/cineplay/20210525045427711lmfw.jpg" class="card-img-top" alt="...">
+                    <img src="https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/cineplay/20210525045427711lmfw.jpg"
+                        class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">한성우</h5>
                         <p class="card-text">백앤드를 내 직업으로 공식적으로 발표하는 바이다</p>
@@ -589,7 +620,8 @@
             </div>
             <div class="col">
                 <a href="PersonalPage/Main-PJS.html" class="card h-100 text-decoration-none">
-                    <img src="https://pbs.twimg.com/profile_images/737671629895917568/GdPl88g0_400x400.jpg" class="card-img-top" alt="...">
+                    <img src="https://pbs.twimg.com/profile_images/737671629895917568/GdPl88g0_400x400.jpg"
+                        class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">박재성</h5>
                         <p class="card-text">그럼 시켜줘, 스프링 명예소방관</p>
@@ -608,7 +640,8 @@
             </div>
             <div class="col">
                 <a href="PersonalPage/Main-LSC.html" class="card h-100 text-decoration-none">
-                    <img src="https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/cineplay/20210525045437357svpj.jpg" class="card-img-top" alt="...">
+                    <img src="https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/cineplay/20210525045437357svpj.jpg"
+                        class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">이승찬</h5>
                         <p class="card-text">당신이... 코더 리..?<br>예아!</p>
@@ -627,13 +660,39 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">방명록 내용 적기</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="응원 한마디 적어주세요!!"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="응원 한마디 적어주세요!!"></textarea>
         </div>
         <button type="button" class="btn btn-outline-dark" id="guestbookbtn">방명록 저장하기</button>
     </div>
 
     <!-- 방명록 카드 표시 -->
     <div id="card"></div>
+
+
+    <!-- 맨 위로 가기 스크립트&버튼-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 스크롤 시 버튼 표시
+            window.onscroll = function () {
+                const topButton = document.getElementById("topButton");
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    topButton.style.display = "block";
+                } else {
+                    topButton.style.display = "none";
+                }
+            };
+
+            // 버튼 클릭 시 맨 위로 이동
+            document.getElementById("topButton").onclick = function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        });
+    </script>
+
+    <button id="topButton">Top <br>▲</button>
+    <!-- 맨 위로 가기 스크립트&버튼-->
+
 </body>
 
 </html>
