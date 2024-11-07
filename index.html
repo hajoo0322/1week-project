@@ -536,8 +536,8 @@ const firebaseConfig = {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
                     const { latitude, longitude } = position.coords;
-                    const nx = 60;  // 원하는 값으로 대체
-                    const ny = 127; // 원하는 값으로 대체
+                    const nx = latitude;  // 원하는 값으로 대체
+                    const ny = longitude; // 원하는 값으로 대체
                     localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
                     fetchWeatherData(nx, ny);
                 }, error => {
