@@ -783,7 +783,7 @@ function displayForecast(items) {
     <div class="team" id="멤버">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col-ru" id="ruy">
-                <a href="PersonalPage/Card-HSW.html" class="card h-100 text-decoration-none">
+                <a class="card h-100 text-decoration-none">
                     <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcZ6CVB%2FbtsKArkfCkN%2FrgX6PJPBASYgF29IsQiEXk%2Fimg.jpg"
                         class="card-img-top" alt="...">
                     <div class="card-body">
@@ -854,23 +854,24 @@ function displayForecast(items) {
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 스크롤 시 버튼 표시
-            window.onscroll = function() {
-                const topButton = document.getElementById("topButton");
-                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                    topButton.style.display = "block";
-                } else {
-                    topButton.style.display = "none";
-                }
-            };
-            window.onscroll = function () {
-                const ruy = document.getElementById("ruy");
-                if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
-                    ruy.style.display = "block";
-                } else {
-                    ruy.style.display = "none";
-                }
-            };
+window.onscroll = function () {
+    const topButton = document.getElementById("topButton");
+    const ruy = document.getElementById("ruy");
 
+    // 첫 번째 조건: 스크롤 위치가 100 이상일 때 topButton 표시
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        topButton.style.display = "block";
+    } else {
+        topButton.style.display = "none";
+    }
+
+    // 두 번째 조건: 스크롤 위치가 700 이상일 때 ruy 표시
+    if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+        ruy.style.display = "block";
+    } else {
+        ruy.style.display = "none";
+    }
+            };
             // 버튼 클릭 시 맨 위로 이동
             document.getElementById("topButton").onclick = function() {
                 window.scrollTo({
