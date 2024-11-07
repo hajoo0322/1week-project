@@ -485,86 +485,180 @@ const firebaseConfig = {
         updateTime();
 
         // 일기예보
-        function getCurrentDateTime() {
-            const date = new Date();
-            let year = date.getFullYear();
-            let month = String(date.getMonth() + 1).padStart(2, '0');
-            let day = String(date.getDate()).padStart(2, '0');
-            let hours = date.getHours();
-            const baseTimes = [2, 5, 8, 11, 14, 17, 20, 23];
-            let baseTime = baseTimes.reduce((prev, curr) => (curr <= hours ? curr : prev));
-            baseTime = String(baseTime).padStart(2, '0') + '00';
-            if (hours < 2) {
-                const prevDate = new Date(date.getTime() - 86400000); // 하루 전 날짜
-                year = prevDate.getFullYear();
-                month = String(prevDate.getMonth() + 1).padStart(2, '0');
-                day = String(prevDate.getDate()).padStart(2, '0');
-                baseTime = "2300";
-            }
-            return {
-                date: `${year}${month}${day}`,
-                time: baseTime
-            };
-        }
-        async function fetchWeatherData(nx, ny) {
-            const apiKey = 'YwQtuITGE24Cty%2BKIF1TkmtNgWiuGUKTCSB8cmqMKSDMRt8r8iq3wNheCCK5rUaTua8gArWcX4ZvS9dIq%2B%2FxiA%3D%3D'; // 본인의 서비스 키를 입력하세요.
-            const {
-                date: baseDate,
-                time: baseTime
-            } = getCurrentDateTime();
-            const url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${apiKey}&numOfRows=10&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
+// 위치 정보를 받아 기상청 API에 사용할 수 있도록 완전한 코드로 만들어드리겠습니다.
+// 기상청의 nx, ny 좌표계로 변환하기 위해서는 TM 좌표계 변환이 필요합니다.
+// 이 코드는 위도, 경도를 기상청에서 사용하는 좌표계로 변환하는 로직을 포함하고 있습니다.
 
-                if (data.response.header.resultCode === "00") {
-                    displayForecast(data.response.body.items.item);
-                } else {
-                    console.error("API 응답 오류: ", data.response.header.resultMsg);
-                }
-            } catch (error) {
-                console.error("날씨 데이터를 가져오는 중 오류 발생: ", error);
-            }
-        }
-        function displayForecast(items) {
-            const forecastContainer = document.getElementById("forecast");
-            forecastContainer.innerHTML = "";
-            items.forEach(item => {
-                const category = item.category;
-                const fcstValue = item.fcstValue;
-                let displayText = "";
-                if (category === "TMP") {
-                    displayText = `기온 - ${fcstValue}℃`;
-                } else if (category === "WSD") {
-                    displayText = `풍속 - ${fcstValue}m/s`;
-                } else if (category === "POP") {
-                    displayText = `강수확률 - ${fcstValue}%`;
-                }
-                if (displayText) {
-                    const forecastElement = document.createElement("p");
-                    forecastElement.textContent = displayText;
-                    forecastContainer.appendChild(forecastElement);
-                }
-            });
-        }
-        if (localStorage.getItem('userPosition')) {
-            const position = JSON.parse(localStorage.getItem('userPosition'));
-            fetchWeatherData(position.nx, position.ny);
+// 좌표 변환을 위해 필요한 상수 정의
+const RE = 6371.00877; // 지구 반경(km)
+const GRID = 5.0; // 격자 간격(km)
+const SLAT1 = 30.0; // 투영 위도1(degree)
+const SLAT2 = 60.0; // 투영 위도2(degree)
+const OLON = 126.0; // 기준점 경도(degree)
+const OLAT = 38.0; // 기준점 위도(degree)
+const XO = 43; // 기준점 X좌표(GRID)
+const YO = 136; // 기준점 Y좌표(GRID)
+
+const DEGRAD = Math.PI / 180.0;
+const RADDEG = 180.0 / Math.PI;
+
+const re = RE / GRID;
+const slat1 = SLAT1 * DEGRAD;
+const slat2 = SLAT2 * DEGRAD;
+const olon = OLON * DEGRAD;
+const olat = OLAT * DEGRAD;
+
+let sn = Math.tan(Math.PI * 0.25 + slat2 * 0.5) / Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+sn = Math.log(Math.cos(slat1) / Math.cos(slat2)) / Math.log(sn);
+let sf = Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+sf = Math.pow(sf, sn) * Math.cos(slat1) / sn;
+let ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
+ro = re * sf / Math.pow(ro, sn);
+
+function convertCoords(lat, lon) {
+    let ra = Math.tan(Math.PI * 0.25 + lat * DEGRAD * 0.5);
+    ra = re * sf / Math.pow(ra, sn);
+    let theta = lon * DEGRAD - olon;
+    if (theta > Math.PI) theta -= 2.0 * Math.PI;
+    if (theta < -Math.PI) theta += 2.0 * Math.PI;
+    theta *= sn;
+
+    const nx = Math.floor(ra * Math.sin(theta) + XO + 0.5);
+    const ny = Math.floor(ro - ra * Math.cos(theta) + YO + 0.5);
+
+    return { nx, ny };
+}
+
+if (localStorage.getItem('userPosition')) {
+    const position = JSON.parse(localStorage.getItem('userPosition'));
+    fetchWeatherData(position.nx, position.ny);
+} else {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            
+            // 위도와 경도를 기상청 API에서 사용하는 nx, ny 값으로 변환
+            const { nx, ny } = convertCoords(latitude, longitude);
+            
+            // 변환된 값을 localStorage에 저장
+            localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
+            
+            // 날씨 데이터 가져오기
+            fetchWeatherData(nx, ny);
+        }, error => {
+            console.error("위치 정보를 가져오는 중 오류 발생: ", error);
+        });
+    } else {
+        console.log("사용자의 위치 정보를 가져올 수 없습니다.");
+    }
+}
+
+async function fetchWeatherData(nx, ny) {
+    const apiKey = 'YwQtuITGE24Cty%2BKIF1TkmtNgWiuGUKTCSB8cmqMKSDMRt8r8iq3wNheCCK5rUaTua8gArWcX4ZvS9dIq%2B%2FxiA%3D%3D'; // 본인의 서비스 키를 입력하세요.
+    const { date: baseDate, time: baseTime } = getCurrentDateTime();
+    const url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${apiKey}&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.response.header.resultCode === "00") {
+            displayForecast(data.response.body.items.item);
         } else {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    const nx = 60;  // 원하는 값으로 대체
-                    const ny = 127; // 원하는 값으로 대체
-                    localStorage.setItem('userPosition', JSON.stringify({ nx, ny }));
-                    fetchWeatherData(nx, ny);
-                }, error => {
-                    console.error("위치 정보를 가져오는 중 오류 발생: ", error);
-                });
-            } else {
-                console.log("사용자의 위치 정보를 가져올 수 없습니다.");
-            }
+            console.error("API 응답 오류: ", data.response.header.resultMsg);
         }
+    } catch (error) {
+        console.error("날씨 데이터를 가져오는 중 오류 발생: ", error);
+    }
+}
+
+function getCurrentDateTime() {
+    const date = new Date();
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let hours = date.getHours();
+    const baseTimes = [2, 5, 8, 11, 14, 17, 20, 23];
+    let baseTime = baseTimes.reduce((prev, curr) => (curr <= hours ? curr : prev));
+    baseTime = String(baseTime).padStart(2, '0') + '00';
+    if (hours < 2) {
+        const prevDate = new Date(date.getTime() - 86400000); // 하루 전 날짜
+        year = prevDate.getFullYear();
+        month = String(prevDate.getMonth() + 1).padStart(2, '0');
+        day = String(prevDate.getDate()).padStart(2, '0');
+        baseTime = "2300";
+    }
+    return {
+        date: `${year}${month}${day}`,
+        time: baseTime
+    };
+}
+
+function displayForecast(items) {
+    const forecastContainer = document.getElementById("forecast");
+    forecastContainer.innerHTML = "";
+    const categoryMap = {
+        "TMP": "기온",
+        "WSD": "풍속",
+        "POP": "강수확률",
+        "SKY": "하늘 상태",
+        "PTY": "강수 형태"
+    };
+
+    const forecastData = {
+        "TMP": null,
+        "WSD": null,
+        "POP": null,
+        "SKY": null,
+        "PTY": null
+    };
+
+    // 필요한 항목만 필터링하여 forecastData에 저장
+    items.forEach(item => {
+        if (item.category in forecastData) {
+            forecastData[item.category] = item.fcstValue;
+        }
+    });
+
+    // 필요한 항목만 화면에 표시
+    Object.keys(forecastData).forEach(category => {
+        const fcstValue = forecastData[category];
+        if (fcstValue !== null) {
+            let displayText = "";
+            switch (category) {
+                case "TMP":
+                    displayText = `${categoryMap[category]} - ${fcstValue}℃`;
+                    break;
+                case "WSD":
+                    displayText = `${categoryMap[category]} - ${fcstValue}m/s`;
+                    break;
+                case "POP":
+                    displayText = `${categoryMap[category]} - ${fcstValue}%`;
+                    break;
+                case "SKY":
+                    const skyStatus = {
+                        "1": "맑음",
+                        "3": "구름 많음",
+                        "4": "흐림"
+                    };
+                    displayText = `${categoryMap[category]} - ${skyStatus[fcstValue] || "알 수 없음"}`;
+                    break;
+                case "PTY":
+                    const ptyStatus = {
+                        "0": "없음",
+                        "1": "비",
+                        "2": "비/눈",
+                        "3": "눈",
+                        "4": "소나기"
+                    };
+                    displayText = `${categoryMap[category]} - ${ptyStatus[fcstValue] || "알 수 없음"}`;
+                    break;
+            }
+            const forecastElement = document.createElement("p");
+            forecastElement.textContent = displayText;
+            forecastContainer.appendChild(forecastElement);
+        }
+    });
+}
         // 일기예보
 
         // 네비바이동
