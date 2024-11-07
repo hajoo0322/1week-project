@@ -336,8 +336,40 @@ const firebaseConfig = {
                     window.location.href = "login.html";
                 };
             }
+
+            // 로그인 여부에 따라 방명록의 수정 및 삭제 버튼 비활성화 설정
+            loadGuestbook(user !== null); // 로그인 상태를 전달하여 버튼 상태 설정
         });
     });
+
+    // 방명록 불러오기
+    async function loadGuestbook(isLoggedIn) {
+        try {
+            $('#card').empty();  // 기존 데이터를 초기화하여 중복 방지
+            let docs = await getDocs(collection(db, "guestbook"));
+            docs.forEach((doc) => {
+                let row = doc.data();
+                let id = doc.id;
+                let name = row['name'];
+                let content = row['content'];
+
+                // isLoggedIn이 false일 경우 수정 및 삭제 버튼을 비활성화
+                let temp_html = `
+                <div class="guestbookcard" id="guestbook-${id}">
+                    <div class="card-body">
+                        <h3>${name}</h3>
+                        <p>${content}</p>
+                        <button type="button" class="btn btn-outline-primary edit-btn" data-id="${id}" ${!isLoggedIn ? 'disabled' : ''}>수정</button>
+                        <button type="button" class="btn btn-outline-danger delete-btn" data-id="${id}" ${!isLoggedIn ? 'disabled' : ''}>삭제</button>
+                    </div>
+                </div>`;
+
+                $('#card').append(temp_html);
+            });
+        } catch (error) {
+            console.error("방명록을 가져오는 중 오류가 발생했습니다: ", error);
+        }
+    }
 
     // 방명록 저장하기 클릭 이벤트
     $(document).on("click", "#guestbookbtn", async function () {
@@ -360,7 +392,7 @@ const firebaseConfig = {
             try {
                 await addDoc(collection(db, "guestbook"), docData);
                 alert('방명록이 저장되었습니다!');
-                window.location.reload();
+                loadGuestbook(true); // 로그인된 상태로 방명록을 다시 로드
             } catch (error) {
                 console.error("방명록 저장 중 오류가 발생했습니다: ", error);
             }
@@ -369,6 +401,45 @@ const firebaseConfig = {
         }
     });
 
+    // 방명록 삭제 기능
+    $(document).on("click", ".delete-btn", async function () {
+        let id = $(this).data("id");
+        try {
+            await deleteDoc(doc(db, "guestbook", id));
+            alert('방명록이 삭제되었습니다.');
+            $(`#guestbook-${id}`).remove();
+        } catch (error) {
+            console.error("방명록 삭제 중 오류가 발생했습니다: ", error);
+        }
+    });
+
+    // 방명록 수정 기능
+    $(document).on("click", ".edit-btn", async function () {
+        let id = $(this).data("id");
+        let docRef = doc(db, "guestbook", id);
+        try {
+            let docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                let row = docSnap.data();
+                let currentName = row['name'];
+                let currentContent = row['content'];
+                let newName = prompt("이름을 수정하세요:", currentName);
+                let newContent = prompt("내용을 수정하세요:", currentContent);
+                if (newName && newContent) {
+                    await updateDoc(docRef, {
+                        name: newName,
+                        content: newContent
+                    });
+                    alert('방명록이 수정되었습니다.');
+                    loadGuestbook(true);  // 수정 후 데이터 다시 로드하여 업데이트
+                }
+            } else {
+                alert("문서를 찾을 수 없습니다.");
+            }
+        } catch (error) {
+            console.error("방명록 수정 중 오류가 발생했습니다: ", error);
+        }
+    });
 
         // 시간 불러오는 기능
         function updateTime() {
