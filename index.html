@@ -221,6 +221,24 @@
             margin: 20px auto 20px auto;
         }
 
+        .col-ru {
+            position: fixed;
+            top: 300px;
+            left: 10px;
+            width: 300px;
+            padding: 0.5rem;
+            border-radius: 5px;
+            z-index: 1000;
+            overflow: hidden;
+            display: none;
+        }
+
+        .col-ru img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
         /* 멤버내용 */
 
         /* 방명록 */
@@ -579,6 +597,16 @@ const firebaseConfig = {
             // 로그인 페이지로 이동하도록 설정
             window.location.href = "login.html";
         });
+
+        window.onscroll = function () {
+                const ruy = document.getElementById("ruy");
+                if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+                    ruy.style.display = "block";
+                } else {
+                    ruy.style.display = "none";
+                }
+            };
+        
     </script>
 </head>
 
