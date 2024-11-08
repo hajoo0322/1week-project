@@ -292,6 +292,20 @@
         }
 
         /* 맨 위로 가기 버튼 */
+
+        /* 오디오 제어 버튼 스타일 */
+        #musicToggleButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 
     <script type="module">
@@ -726,16 +740,38 @@ function displayForecast(items) {
 <body>
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
-
+    
     <!-- 오디오 추가 -->
-<!-- 버튼 추가 -->
-<button id="startMusicButton">'그 음악'</button>
+    <audio id="backgroundMusic" loop>
+        <source src="꽃보다남자 ost.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
-<!-- 오디오 태그 -->
-<audio id="backgroundMusic" loop>
-    <source src="꽃보다남자 ost.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-</audio>
+    <!-- 음악 제어 버튼 -->
+    <button id="musicToggleButton">음악 재생</button>
+
+        <script>
+            // 음악 제어 버튼 클릭 이벤트 처리
+            document.getElementById("musicToggleButton").addEventListener("click", function () {
+                const audioElement = document.getElementById("backgroundMusic");
+                const button = document.getElementById("musicToggleButton");
+    
+                if (audioElement.paused) {
+                    // 음악이 일시 중지된 상태 -> 재생
+                    audioElement.play()
+                        .then(() => {
+                            button.textContent = "음악 정지";
+                        })
+                        .catch((error) => {
+                            console.error("Error playing music:", error);
+                        });
+                } else {
+                    // 음악이 재생 중인 상태 -> 정지
+                    audioElement.pause();
+                    button.textContent = "음악 재생";
+                }
+            });
+        </script>
 
 <script>
     document.getElementById("startMusicButton").addEventListener("click", function() {
