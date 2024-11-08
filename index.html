@@ -557,19 +557,45 @@ async function fetchWeatherData(nx, ny) {
     const apiKey = 'YwQtuITGE24Cty%2BKIF1TkmtNgWiuGUKTCSB8cmqMKSDMRt8r8iq3wNheCCK5rUaTua8gArWcX4ZvS9dIq%2B%2FxiA%3D%3D'; // 본인의 서비스 키를 입력하세요.
     const { date: baseDate, time: baseTime } = getCurrentDateTime();
     const url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${apiKey}&numOfRows=1000&pageNo=1&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+
     try {
         const response = await fetch(url);
-        const data = await response.json();
 
-        if (data.response.header.resultCode === "00") {
+        // 네트워크 관련 오류나 응답이 200이 아닌 경우 처리
+        if (!response.ok) {
+            throw new Error(`HTTP 오류 발생: 상태 코드 ${response.status}`);
+        }
+
+        let data;
+        try {
+            // JSON 파싱 시도
+            data = await response.json();
+        } catch (jsonError) {
+            // JSON 파싱 오류 처리
+            throw new Error("JSON 데이터를 파싱하는 중 오류가 발생했습니다. 올바른 형식의 데이터인지 확인하세요.");
+        }
+
+        // API 응답 코드 확인
+        if (data.response && data.response.header && data.response.header.resultCode !== "00") {
+            throw new Error(`API 응답 오류: ${data.response.header.resultMsg}`);
+        }
+
+        // 날씨 데이터가 올바르게 반환된 경우
+        if (data.response && data.response.body && data.response.body.items && data.response.body.items.item) {
             displayForecast(data.response.body.items.item);
         } else {
-            console.error("API 응답 오류: ", data.response.header.resultMsg);
+            throw new Error("예상치 못한 데이터 구조가 반환되었습니다. API 응답의 body나 items 항목을 확인하세요.");
         }
+
     } catch (error) {
+        // 네트워크 오류, HTTP 상태 오류, JSON 파싱 오류, API 응답 오류 모두 처리
         console.error("날씨 데이터를 가져오는 중 오류 발생: ", error);
+
+        // 사용자에게 오류 메시지 표시
+        alert("날씨 데이터를 가져오는 중 오류가 발생했습니다. 네트워크 상태나 API 키를 확인해주세요.");
     }
 }
+
 
 function getCurrentDateTime() {
     const date = new Date();
@@ -701,6 +727,30 @@ function displayForecast(items) {
     <!-- 제목 및 네비게이션바 -->
     <h1 class="h1">래프트(from garbage)</h1>
 
+    <!-- 오디오 추가 -->
+<!-- 버튼 추가 -->
+<button id="startMusicButton">'그 음악'</button>
+
+<!-- 오디오 태그 -->
+<audio id="backgroundMusic" loop>
+    <source src="꽃보다남자 ost.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    document.getElementById("startMusicButton").addEventListener("click", function() {
+        const audioElement = document.getElementById("backgroundMusic");
+        audioElement.play()
+            .then(() => {
+                console.log("Music is playing.");
+            })
+            .catch((error) => {
+                console.error("Error playing music:", error);
+            });
+    });
+</script>
+  
+    
     <!-- 시간 -->
     <div class="clock">
         <h4 id="time"></h4>
